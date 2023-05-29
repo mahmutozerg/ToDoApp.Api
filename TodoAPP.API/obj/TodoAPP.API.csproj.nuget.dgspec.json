@@ -1,0 +1,289 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+        "projectName": "TodoAPP.API",
+        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+                "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Autofac.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "EFCore": {
+              "target": "Package",
+              "version": "[1.1.2, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "projectName": "TodoAPP.Core",
+        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+        "projectName": "TodoAPP.Repository",
+        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+                "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0-preview.4.23259.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj",
+        "projectName": "TodoAPP.Service",
+        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj",
+        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
+                "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.5.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
