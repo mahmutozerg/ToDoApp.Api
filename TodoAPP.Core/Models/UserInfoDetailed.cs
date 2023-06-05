@@ -9,6 +9,7 @@ public  class UserInfoDetailed
     public int Id { get; set; }
     public DateTime LastLogin { get; set; }
     public bool IsUserActive { get; set; }
+    public string SessionGUID { get; set; }
     public DateTime CreatedAt { get; set; }
     
     public UserInfo UserInfo;

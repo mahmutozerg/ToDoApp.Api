@@ -28,40 +28,64 @@ public class UserController:CustomBaseController
     }
     [HttpPost("[action]")]
     public async Task<IActionResult> Register(UserDto userDto)
-    {
-        var newUserDetails = await _userInfoDetailedService.CreateInitial();
+    { 
+        UserInfoDetailed newUserDetails = await _userInfoDetailedService.CreateInitial();
         var errorMessage = await _userInfoService.Register(userDto,newUserDetails);
 
         if (string.IsNullOrEmpty(errorMessage))
         {
-            return CreateActionResult(CustomResponseDto<NoContentDto>.Succes(StatusCodes.Status201Created));
+            return CreateActionResult(CustomResponseDto<UserInfoDetailed>.Succes(StatusCodes.Status201Created,newUserDetails));
         }
         
-        return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(StatusCodes.Status409Conflict, errorMessage));
+        return CreateActionResult(CustomResponseDto<UserLoginDto>.Fail(StatusCodes.Status409Conflict, errorMessage));
     }
     [HttpPost("[action]")]
     public async Task<IActionResult> Login(UserLoginDto userDto)
     {
-        var propUserDto = new UserDto()
+        var mappedUserDto = new UserDto()
         {
-            UserName = userDto.UserNameOrEmail,
-            Email = userDto.UserNameOrEmail,
+            Email = userDto.Email,
             Password = userDto.Password
 
         };
-        var errorMessage = await _userInfoService.CheckUserExist(propUserDto);
+        var errorMessage = await _userInfoService.CheckUserExist(mappedUserDto);
 
         if (!string.IsNullOrEmpty(errorMessage))
         {
-            var loginInformationMessage = await _userInfoService.Login(propUserDto);
+            var loginInformationMessage = await _userInfoService.Login(mappedUserDto);
             if (string.IsNullOrEmpty(loginInformationMessage))
             {
-                return CreateActionResult(CustomResponseDto<NoContentDto>.Succes(StatusCodes.Status200OK));
+                var  userInfoWithDetails =   await _userInfoService.GetUserInfoWithDetailsByEmail(mappedUserDto.Email);
+                
+                _userInfoDetailedService.UpdateOnLogin(userInfoWithDetails.UserInfoDetailed);
+                await _userInfoService.Update(userInfoWithDetails);
+
+                // Create a new cookie with the specified name and value
+
+                var sessionResponse = new UserGUIDDTO()
+                {
+                    SessionGUID = userInfoWithDetails.UserInfoDetailed.SessionGUID
+                };
+                return CreateActionResult(CustomResponseDto<UserGUIDDTO>.Succes(StatusCodes.Status200OK,sessionResponse));
             }
         }
-        // bunu yapmamın sebebi olası bir saldırı yapan kişinin şifrenin mi yanlış olduğunu ya da name,email mi yanlış anlayamasın diye
-        // status code olaral 401 i seçtim bu yüzden 404 döndürmektense 
-        return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(StatusCodes.Status401Unauthorized,$"Check your credentials {userDto.UserNameOrEmail}:{userDto.Password}" ));
+        
+        
+        return CreateActionResult(CustomResponseDto<UserLoginDto>.Fail(StatusCodes.Status401Unauthorized,$"Check your credentials {userDto.Email}:{userDto.Password}" ));
+    }
+    [HttpPost("[action]")]
+    public async Task<IActionResult> Logout(UserGUIDDTO userDto)
+    {
+        var user = await _userInfoDetailedService.Where(x => x.SessionGUID == userDto.SessionGUID).FirstOrDefaultAsync();
+        if (user == null || string.IsNullOrEmpty(user.SessionGUID))
+            return CreateActionResult(CustomResponseDto<UserLoginDto>.Fail(StatusCodes.Status404NotFound,$"Be sure that you are logged in" ));
+
+        user.IsUserActive = false;
+        user.SessionGUID = "";
+        await _userInfoDetailedService.Update(user);
+        return CreateActionResult(CustomResponseDto<UserGUIDDTO>.Succes(StatusCodes.Status200OK));
+
+
     }
 
 

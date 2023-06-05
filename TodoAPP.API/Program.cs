@@ -32,6 +32,8 @@ builder.Services.AddScoped(typeof(IUserInfoService), typeof(UserInfoService));
 
 builder.Services.AddScoped( typeof(IUserInfoDetailedRepository),typeof(UserInfoDetailedRepository));
 builder.Services.AddScoped(typeof(IUserInfoDetailedService), typeof(UserInfoDetailedService));
+builder.Services.AddScoped(typeof(IToDoRepository), typeof(ToDoRepository));
+builder.Services.AddScoped(typeof(IToDoService), typeof(ToDoService));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {

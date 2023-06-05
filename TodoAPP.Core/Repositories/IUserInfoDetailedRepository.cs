@@ -4,6 +4,6 @@ namespace TodoAPP.Core.Repositories;
 
 public interface IUserInfoDetailedRepository:IGenericRepository<UserInfoDetailed>
 {
-    public  Task<UserInfoDetailed> Create( );
+    public void UpdateOnLogin(UserInfoDetailed userInfoDetailed);
 
 }

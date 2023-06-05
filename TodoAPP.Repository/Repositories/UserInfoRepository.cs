@@ -5,25 +5,45 @@ using TodoAPP.Core.Repositories;
 namespace TodoAPP.Repository.Repositories;
 
 public class UserInfoRepository:GenericRepository<UserInfo>,IUserInfoRepository
-{
-    
+{    
+    private readonly AppDbContext _context;
+    private readonly DbSet<UserInfo> _dbSet;
+
     public UserInfoRepository(AppDbContext context) : base(context)
     {
+        _context = context;
+        _dbSet = _context.Set<UserInfo>();
     }
 
     public async Task<IQueryable<UserInfo>> GetAllUserInfoWithDetails()
     {
-        return   _context.UserInfos.Include(x=>x.UserInfoDetailed);
+        return   _dbSet.Include(x=>x.UserInfoDetailed).AsNoTracking();
     }
 
     public async Task<IQueryable<UserInfo>> GetUserInfoWithDetailsById(int id)
     {
-        return _context.UserInfos.Include(x => x.UserInfoDetailed).Where(x => x.Id == id);
+        return _dbSet.Include(x => x.UserInfoDetailed).Where(x => x.Id == id);
     }
 
     public Task<UserInfo> SetUserDetailInfo(UserInfo userInfo)
     {
-        return _context.UserInfos.Where(x => x.UserName == userInfo.UserName).SingleOrDefaultAsync();
+        return _dbSet.Where(x => x.UserName == userInfo.UserName).SingleOrDefaultAsync();
+    }
+
+    public async Task<UserInfo?> GetUserInfoWithDetailsByUsername(string username)
+    {
+        return await _dbSet.Include(x=> x.UserInfoDetailed).Where(x => x.UserName == username).FirstOrDefaultAsync();
+    }
+
+    public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
+    {
+        return await _dbSet.Include(x=> x.UserInfoDetailed).Where(x => x.Email == email).FirstOrDefaultAsync();
+    }
+
+    public async Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId)
+    {
+        return await _dbSet.Include(x => x.UserInfoDetailed)
+            .Where(x => x.UserInfoDetailed.SessionGUID == sessionId).FirstOrDefaultAsync();
     }
 
 

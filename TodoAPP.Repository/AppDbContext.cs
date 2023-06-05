@@ -8,7 +8,7 @@ public class AppDbContext:DbContext
 {
     public DbSet<UserInfoDetailed> UserInfoDetaileds { get; set; }
     public DbSet<UserInfo> UserInfos { get; set; }
-    public DbSet<ToDo> ToDos { get; set; }
+    public Task<List<ToDo>> ToDos { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
     {   

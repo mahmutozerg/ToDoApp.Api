@@ -8,14 +8,28 @@ namespace TodoAPP.Service.Services;
 public class UserInfoDetailedService:Service<UserInfoDetailed>,IUserInfoDetailedService
 {
     private readonly IUserInfoDetailedRepository _userInfoDetailedRepository;
+    private readonly IUnitOfWork _unitOfWork;
     public async Task<UserInfoDetailed> CreateInitial()
     { 
-        var entity=  await _userInfoDetailedRepository.Create();
+        var entity = new UserInfoDetailed()
+        {
+            LastLogin = DateTime.Today,
+            IsUserActive = false,
+            CreatedAt = DateTime.Now,
+            SessionGUID =  Guid.NewGuid().ToString()
+
+        };
         return entity;
     }
 
-    public UserInfoDetailedService(IGenericRepository<UserInfoDetailed> repository, IUserInfoDetailedRepository userInfoDetailedRepository) : base(repository, unitOfWork)
+    public void UpdateOnLogin(UserInfoDetailed userInfoDetailed)
+    {
+        _userInfoDetailedRepository.UpdateOnLogin(userInfoDetailed);
+    }
+
+    public UserInfoDetailedService(IGenericRepository<UserInfoDetailed?> repository, IUserInfoDetailedRepository userInfoDetailedRepository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
     {
         _userInfoDetailedRepository = userInfoDetailedRepository;
+        _unitOfWork = unitOfWork;
     }
 }

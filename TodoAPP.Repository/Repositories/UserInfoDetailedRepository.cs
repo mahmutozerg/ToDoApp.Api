@@ -8,21 +8,17 @@ namespace TodoAPP.Repository.Repositories;
 
 public class UserInfoDetailedRepository : GenericRepository<UserInfoDetailed>,IUserInfoDetailedRepository
 {
+    private readonly AppDbContext _context;
+
+    
+    public void UpdateOnLogin(UserInfoDetailed userInfoDetailed)
+    {
+        userInfoDetailed.IsUserActive = true;
+        userInfoDetailed.LastLogin = DateTime.Now;
+    }
+
     public UserInfoDetailedRepository(AppDbContext context) : base(context)
     {
+        _context = context;
     }
-
-    public async Task<UserInfoDetailed> Create( )
-    {
-        var entity = new UserInfoDetailed()
-        {
-            LastLogin = DateTime.Today,
-            IsUserActive = true,
-            CreatedAt = DateTime.Now,
-        };
-
-        return entity;
-    }
-
-   
 }

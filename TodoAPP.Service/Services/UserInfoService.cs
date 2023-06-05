@@ -30,7 +30,8 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
                 Email = userDto.Email,
                 PasswordSalt = PasswordHasher.GenerateSalt(),
                 IsDeleted = false,
-                UserInfoDetailed = userInfoDetailed
+                UserInfoDetailed = userInfoDetailed,
+                ToDos = new List<ToDo>()
 
             };
             newUser.PasswordHash= PasswordHasher.ComputeHash(userDto.Password, newUser.PasswordSalt, _pepper, _iteration);
@@ -75,12 +76,29 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
         
         
         
-        errorMessage += isEmailExist != null ? "Email already exist " :  string.Empty;
-        errorMessage += isUsernameExist != null? "User name already exist " :  string.Empty;
+        errorMessage += isEmailExist != false ? "Email already exist " :  string.Empty;
+        errorMessage += isUsernameExist != false? "User name already exist " :  string.Empty;
 
 
         return errorMessage;
     }
+
+    public async Task<UserInfo?> GetUserInfoWithDetailsByUsername(string username)
+    {
+        return  await _userInfoRepository.GetUserInfoWithDetailsByUsername(username);
+         
+    }
+
+    public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
+    {
+        return  await _userInfoRepository.GetUserInfoWithDetailsByEmail(email);
+    }
+
+    public async Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId)
+    {
+        return  await _userInfoRepository.GetUserInfoWithDetailsBySessionId(sessionId);
+    }
+    
     public async Task<IEnumerable<UserInfo>> GetAllUserInfoWithDetails()
     {
         return await _userInfoRepository.GetAllUserInfoWithDetails();
@@ -89,10 +107,14 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
     public async Task<IQueryable<UserInfo>> GetUserInfoWithDetailsById(int id)
     {
         return await _userInfoRepository.GetUserInfoWithDetailsById(id);
+    }    
+    public async Task<UserInfo?> asda(string username)
+    {
+        return await _userInfoRepository.GetUserInfoWithDetailsByUsername(username);
     }
 
    
-    public UserInfoService(IGenericRepository<UserInfo> repository, IUnitOfWork unitOfWork, IUserInfoRepository userInfoRepository) : base(repository, unitOfWork)
+    public UserInfoService(IGenericRepository<UserInfo?> repository, IUnitOfWork unitOfWork, IUserInfoRepository userInfoRepository) : base(repository, unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _userInfoRepository = userInfoRepository;

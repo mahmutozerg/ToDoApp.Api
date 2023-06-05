@@ -17,11 +17,11 @@ public class UserInfo
     public string Email { get; set; }
     public string PasswordSalt { get; set; }
     public string PasswordHash { get; set; }
-    
-
+    [JsonIgnore]
     public bool IsDeleted { get; set; }
-    public UserInfoDetailed UserInfoDetailed { get; set; }
-
-    public List<ToDo> ToDos { get; set; }
     
+    public UserInfoDetailed UserInfoDetailed { get; set; }
+    [JsonIgnore]
+    public List<ToDo> ToDos { get; set; } = new List<ToDo>();
+
 }

@@ -11,6 +11,5 @@ public class ToDoConfigurations:IEntityTypeConfiguration<ToDo>
         builder.Property(x => x.CreatedAt).IsRequired();
         builder.Property(x => x.UserInfoId).IsRequired();
         builder.Property(x => x.TodoContext).IsRequired();
-        
     }
 }
