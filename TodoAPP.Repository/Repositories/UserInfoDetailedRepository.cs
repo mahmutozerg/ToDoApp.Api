@@ -15,6 +15,7 @@ public class UserInfoDetailedRepository : GenericRepository<UserInfoDetailed>,IU
     {
         userInfoDetailed.IsUserActive = true;
         userInfoDetailed.LastLogin = DateTime.Now;
+        userInfoDetailed.SessionGUID = Guid.NewGuid().ToString();
     }
 
     public UserInfoDetailedRepository(AppDbContext context) : base(context)

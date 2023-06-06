@@ -76,8 +76,8 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
         
         
         
-        errorMessage += isEmailExist != false ? "Email already exist " :  string.Empty;
-        errorMessage += isUsernameExist != false? "User name already exist " :  string.Empty;
+        errorMessage += !isEmailExist ? "Email already exist " :  string.Empty;
+        errorMessage += !isUsernameExist ? "User name already exist " :  string.Empty;
 
 
         return errorMessage;

@@ -13,7 +13,8 @@ public class ToDo
     public DateTime DueTime { get; set; }
     [JsonIgnore]
     public bool  IsDeleted { get; set; }
+    [JsonIgnore]
     public int UserInfoId { get; set; }
-    
+    [JsonIgnore]
     public  UserInfo UserInfo { get; set; }
 }

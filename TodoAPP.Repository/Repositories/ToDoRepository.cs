@@ -24,13 +24,13 @@ public class ToDoRepository:GenericRepository<ToDo>,IToDoRepository
     public async Task<List<ToDo>> GetBylistNameAsync(string listName, string sessionId)
     {
         var relatedUserToDos = await GetWithFullUserInfo(sessionId);
-        return relatedUserToDos.Where(x => x.ListName == listName).ToList();
+        return relatedUserToDos.Where(x => x.ListName == listName && !x.IsDeleted).ToList();
     }
 
     public Task<List<ToDo>> GetWithFullUserInfo(string sessionId)
     {
-        return  Task.FromResult<List<ToDo>>(new List<ToDo>(_dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed)
-            .Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId)));
+        return  Task.FromResult<List<ToDo>>(new List<ToDo>(_dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed).AsNoTracking().
+            Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted)));
     }
 
 

@@ -9,7 +9,8 @@ public interface IToDoService:IService<ToDo>
     Task<ToDo> Create(TodoDto todoDto);
     Task<List<ToDo>> GetBylistNameAsync(string listName, string sessionId);
     Task<List<ToDo>> GetWithFullUserInfo(string sessionId);
-    Task<ToDo> UpdateToDoStatusById(int id);
+    Task<ToDo?> UpdateToDoStatusById(int id);
     Task<List<ToDo>> GetCompletedToDos(string sessionId);
+    Task<ToDo?> Update(TodoDto todoDto, int id, UserInfo user);
 
 }

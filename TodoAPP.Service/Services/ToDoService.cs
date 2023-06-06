@@ -61,8 +61,25 @@ public class ToDoService:Service<ToDo>,IToDoService
     public async Task<List<ToDo>> GetCompletedToDos(string sessionId)
     {
         var relatedUserToDos = await _toDoRepository.GetWithFullUserInfo(sessionId);
-        var completedToDos = relatedUserToDos.Where(x=>x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && x.IsDone == true && x.IsDeleted == false);
+        var completedToDos = relatedUserToDos.Where(x=>x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && x.IsDone && !x.IsDeleted );
 
         return completedToDos.ToList();
     }
+
+    public  Task<ToDo?> Update(TodoDto todoDto, int id, UserInfo user)
+    {
+        var toDo = _toDoRepository.Where(x => x.Id == id).FirstOrDefault();
+
+        if (toDo != null)
+        {
+            toDo.TodoContext = todoDto.TodoContext == string.Empty ? toDo.TodoContext : todoDto.TodoContext;
+            toDo.Title = todoDto.Title == string.Empty ? toDo.Title : todoDto.Title;
+            toDo.ListName = todoDto.ListName == string.Empty ? toDo.ListName : todoDto.ListName;
+            toDo.DueTime = todoDto.DueTime == toDo.DueTime ? toDo.DueTime : todoDto.DueTime;
+        }
+        
+        return Task.FromResult(toDo);
+
+    }
+    
 }
