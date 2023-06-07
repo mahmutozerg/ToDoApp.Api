@@ -47,9 +47,5 @@ public class GenericRepository<T>:IGenericRepository<T> where T :class
         _dbSet.Remove(entity);
     }
 
-    public IQueryable<T?> GetAll()
-    {
-        var dbset = _dbSet;
-        return dbset;
-    }
+ 
 }

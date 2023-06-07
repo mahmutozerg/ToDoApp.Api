@@ -53,5 +53,25 @@ W
 'TodoAPP.Core/UnitOfWorks/IUnitOfWork.cs,0\0\0047685b94d28f30280abb0238ed8a88c006b657
 \
 ,TodoAPP.Repository/UnitOfWorks/UnitOfWork.cs,e\6\e63809b2787f81f9db8737d24f3e4725b5927efa
-_
-/TodoAPP.API/Controllers/CustomBaseController.cs,c\0\c0ba55726708a2687364a308b49ad052b7dabc24
+\
+,TodoAPP.Repository/TodoAPP.Repository.csproj,b\0\b0aeb85f7d4b45538bdc4d7a4fc3894362f18b37
+k
+;TodoAPP.Repository/Configurations/UserInfoConfigurations.cs,2\5\256c9142c6709dfc5f48e1aa409a4507a2a4fa9f
+g
+7TodoAPP.Repository/Configurations/ToDoConfigurations.cs,a\c\ac2aa2835a60b67a0382fbb3ee080e31d8ac3832
+j
+:TodoAPP.Repository/Migrations/AppDbContextModelSnapshot.cs,e\2\e29daaa772e3e2cd03ff2a68355ff0f262075ef7
+P
+ TodoAPP.Core/DTOs/UserGUIDDTO.cs,e\5\e53b2a0f42ba2cd4ef8271ac1d624494a9568a74
+R
+"TodoAPP.Repository/AppDbContext.cs,7\3\73344c4e5525a5877bfb15a694eae60b6127fcd9
+O
+TodoAPP.Core/Models/UserInfo.cs,5\2\523b797a8dbb5572ac5dcb8c452ffaa381b9db6f
+W
+'TodoAPP.Core/Models/UserInfoDetailed.cs,b\a\ba432174dac131c04341b4e68fa8fb88dbf499a2
+K
+TodoAPP.Core/Models/ToDo.cs,c\5\c53eacc0b27d99625d668b72003b845f972f64ff
+L
+TodoAPP.Core/DTOs/TodoDto.cs,8\0\805b7ddd90f2c4b07b2fa015aa1e9dce7ea5e555
+Q
+!TodoAPP.Core/DTOs/UserLoginDto.cs,1\8\18d08279de368cf3f72c6fd0d53811d86e65135b

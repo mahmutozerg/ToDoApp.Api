@@ -8,7 +8,6 @@ public interface IUserInfoService:IService<UserInfo>
     Task<string>Register(UserDto userDto,UserInfoDetailed userInfoDetailed);
     Task<string> Login(UserDto userDto);
 
-    Task<IEnumerable<UserInfo>> GetAllUserInfoWithDetails();
     Task<string> CheckUserExist(UserDto userDto);
 
     Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email);
