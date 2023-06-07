@@ -17,12 +17,14 @@ public class GenericRepository<T>:IGenericRepository<T> where T :class
     
     public async Task<T?> GetByIdAsync(int id)
     {
-        return await _dbSet.FindAsync(id);
+        var entity =  await _dbSet.FindAsync(id);
+        return entity;
     }
 
     public IQueryable<T?> Where(Expression<Func<T?, bool>> expression)
     {
-        return _dbSet.Where(expression);
+        var entities =  _dbSet.Where(expression);
+        return entities;
     }
 
     public async Task<bool> AnyAsync(Expression<Func<T?, bool>> expression)
@@ -42,12 +44,12 @@ public class GenericRepository<T>:IGenericRepository<T> where T :class
 
     public void Remove(T? entity)
     {
-         
         _dbSet.Remove(entity);
     }
 
     public IQueryable<T?> GetAll()
     {
-        return _dbSet;
+        var dbset = _dbSet;
+        return dbset;
     }
 }

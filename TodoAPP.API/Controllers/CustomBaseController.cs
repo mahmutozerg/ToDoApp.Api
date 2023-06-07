@@ -9,13 +9,6 @@ public class CustomBaseController:ControllerBase
     [NonAction]
     public IActionResult CreateActionResult<T>(CustomResponseDto<T> res)
     {
-        if (res.StatusCode == 204)
-        {
-            return new ObjectResult(null)
-            {
-                StatusCode = res.StatusCode
-            };
-        }
 
         return new ObjectResult(res)
         {
@@ -27,13 +20,7 @@ public class CustomBaseController:ControllerBase
 
     public IActionResult CreateActionResult<T>(CustomResponseListDataDto<T> res)
     {
-        if (res.StatusCode == 204)
-        {
-            return new ObjectResult(null)
-            {
-                StatusCode = res.StatusCode
-            };
-        }
+
 
         return new ObjectResult(res)
         {

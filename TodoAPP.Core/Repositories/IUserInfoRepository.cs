@@ -11,4 +11,5 @@ public interface IUserInfoRepository:IGenericRepository<UserInfo>
     Task<UserInfo?> GetUserInfoWithDetailsByUsername(string username);
     Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email);
     Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId);
+    
 }

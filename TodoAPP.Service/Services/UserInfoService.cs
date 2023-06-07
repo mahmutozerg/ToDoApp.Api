@@ -17,7 +17,12 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
     private readonly int _iteration = 5;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserInfoRepository _userInfoRepository;
-    
+    public UserInfoService(IGenericRepository<UserInfo?> repository, IUnitOfWork unitOfWork, IUserInfoRepository userInfoRepository) : base(repository, unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+        _userInfoRepository = userInfoRepository;
+        _pepper = "Mahmut";
+    }
     public async Task<string> Register(UserDto userDto,UserInfoDetailed userInfoDetailed)
     {
         var errorMessage = await CheckUserExist(userDto);
@@ -91,29 +96,33 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
    
     public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
     {
-        return  await _userInfoRepository.GetUserInfoWithDetailsByEmail(email);
+        var entity =  await _userInfoRepository.GetUserInfoWithDetailsByEmail(email);
+        return entity;
     }
 
     public async Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId)
     {
-        return  await _userInfoRepository.GetUserInfoWithDetailsBySessionId(sessionId);
-    }
-    
-    public async Task<IEnumerable<UserInfo>> GetAllUserInfoWithDetails()
-    {
-        return await _userInfoRepository.GetAllUserInfoWithDetails();
-    }
-    
-    public async Task<UserInfo?> asda(string username)
-    {
-        return await _userInfoRepository.GetUserInfoWithDetailsByUsername(username);
+        var entity=  await _userInfoRepository.GetUserInfoWithDetailsBySessionId(sessionId);
+        return entity;
     }
 
-   
-    public UserInfoService(IGenericRepository<UserInfo?> repository, IUnitOfWork unitOfWork, IUserInfoRepository userInfoRepository) : base(repository, unitOfWork)
+    public async Task<UserInfo?> Remove(string email,UserInfo userInfo)
     {
-        _unitOfWork = unitOfWork;
-        _userInfoRepository = userInfoRepository;
-        _pepper = "Mahmut";
+        if (userInfo != null)
+        {
+            userInfo.IsDeleted = true;
+            await Update(userInfo);
+        }
+
+        return userInfo;    
     }
+
+    public async Task<IEnumerable<UserInfo>> GetAllUserInfoWithDetails()
+    {
+        var entity =  await _userInfoRepository.GetAllUserInfoWithDetails();
+        return entity;
+    }
+    
+   
+
 }

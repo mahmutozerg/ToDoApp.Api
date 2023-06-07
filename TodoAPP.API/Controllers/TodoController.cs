@@ -19,9 +19,21 @@ public class TodoController : CustomBaseController
     }
     
     [HttpGet("[action]/{sessionId}")]
-    public async Task<List<ToDo>> GetAll(string sessionId)
+    public async Task<IActionResult> GetAll(string sessionId)
     {
-        return await _toDoService.GetAllAsync(sessionId);
+        IActionResult actionResult;
+        var user =await  _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
+        var entities= await _toDoService.GetAllAsync(sessionId);
+
+        if (user == null)
+        {
+            actionResult =  CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound, $"Check session id:{sessionId}"));
+            return actionResult;
+        }
+
+        actionResult =  CreateActionResult(CustomResponseListDataDto<ToDo>.Success(StatusCodes.Status200OK,entities));
+        return actionResult;
+
     }
 
     [HttpGet("[action]/{sessionId}/{ListName}")]
@@ -41,7 +53,7 @@ public class TodoController : CustomBaseController
         if (!string.IsNullOrEmpty(responseMessage))
         {
             actionResult =
-                CreateActionResult(CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound, responseMessage));
+                CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound, responseMessage));
             return actionResult;
         }
 
@@ -103,14 +115,14 @@ public class TodoController : CustomBaseController
         if (user == null)
         {
             actionResult = CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
             return actionResult;
         }
         var updatedTodo = await _toDoService.Update(todoDto,id,user.UserInfoDetailed.SessionGUID);
         if (updatedTodo == null)
         {
             actionResult = CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound,"ToDo id does not exist"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound,"ToDo id does not exist"));
             return actionResult;
         }
 
@@ -130,7 +142,7 @@ public class TodoController : CustomBaseController
         if (user == null)
         {
             actionResult = CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
             return actionResult;
         }
         
@@ -139,7 +151,7 @@ public class TodoController : CustomBaseController
         if (toDo == null)
         {
             actionResult = CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound,"ToDo does not exist"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound,"ToDo does not exist"));
             return actionResult;
         }
              
@@ -167,7 +179,7 @@ public class TodoController : CustomBaseController
         if (user == null)
         {
             actionResult = CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound, $"Sessionid {sessionId} does not exist"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound, $"Sessionid {sessionId} does not exist"));
             return actionResult;
         }
 
@@ -190,7 +202,7 @@ public class TodoController : CustomBaseController
         if (user == null)
         {
             actionResult =CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
             return actionResult;
 
         }
@@ -199,7 +211,7 @@ public class TodoController : CustomBaseController
         if (todo == null)
         {
             actionResult = CreateActionResult(
-                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound,"ToDo id does not exist"));
+                CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound,"ToDo id does not exist"));
             return actionResult;
 
         }

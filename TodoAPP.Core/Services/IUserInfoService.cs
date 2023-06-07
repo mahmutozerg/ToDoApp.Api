@@ -13,5 +13,6 @@ public interface IUserInfoService:IService<UserInfo>
 
     Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email);
     Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId);
+    Task<UserInfo?> Remove(string email,UserInfo userInfo);
 
 }

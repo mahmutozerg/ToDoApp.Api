@@ -9,6 +9,7 @@ namespace TodoAPP.Repository.Repositories;
 public class UserInfoDetailedRepository : GenericRepository<UserInfoDetailed>,IUserInfoDetailedRepository
 {
     private readonly AppDbContext _context;
+    private readonly DbSet<UserInfoDetailed> _dbSet;
 
     
     public void UpdateOnLogin(UserInfoDetailed userInfoDetailed)
@@ -18,8 +19,12 @@ public class UserInfoDetailedRepository : GenericRepository<UserInfoDetailed>,IU
         userInfoDetailed.SessionGUID = Guid.NewGuid().ToString();
     }
 
+
+
     public UserInfoDetailedRepository(AppDbContext context) : base(context)
     {
         _context = context;
+        _dbSet = _context.Set<UserInfoDetailed>();
+
     }
 }

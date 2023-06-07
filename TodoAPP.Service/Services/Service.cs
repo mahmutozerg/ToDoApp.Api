@@ -20,7 +20,8 @@ public class Service<T> : IService<T> where T :class
     
     public IQueryable<T?> Where(Expression<Func<T?, bool>> expression)
     {
-        return _repository.Where(expression);
+        var entities = _repository.Where(expression);
+        return entities;
     }
     
     public async Task<bool> Update(T? entity)

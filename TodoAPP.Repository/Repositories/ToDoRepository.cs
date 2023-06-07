@@ -18,7 +18,9 @@ public class ToDoRepository:GenericRepository<ToDo>,IToDoRepository
 
     public Task<IQueryable<ToDo>> GetAllAsync()
     {
-        return Task.FromResult(_dbSet.AsNoTracking());
+        var entities =  (_dbSet.AsNoTracking());
+
+        return Task.FromResult(entities);
     }
 
     public async Task<ToDo?> GetByIdAsync(string sessionId,int id)
@@ -33,19 +35,23 @@ public class ToDoRepository:GenericRepository<ToDo>,IToDoRepository
     public async Task<List<ToDo>> GetBylistNameAsync(string listName, string sessionId)
     {
         var relatedUserToDos = await GetWithFullUserInfo(sessionId);
-        return relatedUserToDos.Where(x => x.ListName == listName && !x.IsDeleted).ToList();
+        var filteredRelatedUserToDosList = relatedUserToDos.Where(x => x.ListName == listName && !x.IsDeleted).ToList();
+        return filteredRelatedUserToDosList;
     }
 
-    public Task<List<ToDo>> GetWithFullUserInfo(string sessionId)
+    public async Task<List<ToDo>> GetWithFullUserInfo(string sessionId)
     {
-        return  Task.FromResult<List<ToDo>>(new List<ToDo>(_dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed).AsNoTracking().
-            Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted)));
+        var entities= await _dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed).AsNoTracking()
+            .Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted).ToListAsync();
+
+        return entities;
     }
 
     public async Task<ToDo> GetWithFullUserInfoById(string sessionId, int id)
     {
-        return await _dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed)
+        var entities = await _dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed)
             .Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted&& x.Id == id).FirstOrDefaultAsync();
 
+        return entities;
     }
 }

@@ -18,7 +18,8 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public async Task<List<ToDo>> GetAllAsync(string sessionId)
     {
-        return await _toDoRepository.GetWithFullUserInfo(sessionId);
+        var entities = await  _toDoRepository.GetWithFullUserInfo(sessionId);
+        return entities;
     }
 
     public Task<ToDo> Create(TodoDto todoDto)
@@ -38,7 +39,8 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public async Task<List<ToDo>> GetBylistNameAsync(string listName, string sessionId)
     {
-        return await _toDoRepository.GetBylistNameAsync(listName,sessionId);
+        var entities =  await _toDoRepository.GetBylistNameAsync(listName,sessionId);
+        return entities;
     }
 
     public async Task<ToDo?> UpdateToDoStatusById(string sessionId,int id)
@@ -57,7 +59,8 @@ public class ToDoService:Service<ToDo>,IToDoService
         var relatedUserToDos = await _toDoRepository.GetWithFullUserInfo(sessionId);
         var completedToDos = relatedUserToDos.Where(x=>x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && x.IsDone && !x.IsDeleted );
 
-        return completedToDos.ToList();
+        var completedTodosList =  completedToDos.ToList();
+        return completedTodosList;
     }
 
     public async Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId)
