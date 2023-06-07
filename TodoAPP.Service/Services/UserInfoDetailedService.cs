@@ -14,7 +14,7 @@ public class UserInfoDetailedService:Service<UserInfoDetailed>,IUserInfoDetailed
         var entity = new UserInfoDetailed()
         {
             LastLogin = DateTime.Today,
-            IsUserActive = false,
+            IsUserActive = true,
             CreatedAt = DateTime.Now,
             SessionGUID =  Guid.NewGuid().ToString()
 

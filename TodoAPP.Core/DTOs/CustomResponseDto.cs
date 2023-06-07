@@ -5,8 +5,6 @@ namespace TodoAPP.Core.DTOs;
 public class CustomResponseDto<T>
 {
     public T? Data { get; set; }
-    public List<T>? Datas { get; set; }
-    [JsonIgnore]
     public int StatusCode { get; set; }
     public List<string>? Errors { get; set; }
 
@@ -14,13 +12,7 @@ public class CustomResponseDto<T>
     public static CustomResponseDto<T> Succes(int statusCode,T data)
     {
         return new CustomResponseDto<T> {Data = data, StatusCode = statusCode,Errors = new List<string>()};
-    }    
-   public static CustomResponseDto<T> SuccesWithList(int statusCode,List<T> data)
-    {
-        return new CustomResponseDto<T> {Datas = data, StatusCode = statusCode,Errors = new List<string>()};
-    }    
-
-    
+    }
 
     public static CustomResponseDto<T> Succes(int statusCode)
     {

@@ -11,33 +11,11 @@ public class TodoController : CustomBaseController
     private readonly IUserInfoDetailedService _userInfoDetailedService;
     private readonly IToDoService _toDoService;
 
-    public TodoController(IUserInfoService userInfoService, IUserInfoDetailedService userInfoDetailedService,
-        IToDoService toDoService)
+    public TodoController(IUserInfoService userInfoService, IUserInfoDetailedService userInfoDetailedService, IToDoService toDoService)
     {
         _userInfoService = userInfoService;
         _userInfoDetailedService = userInfoDetailedService;
         _toDoService = toDoService;
-    }
-
-
-    [HttpPost("[action]/{sessionId}")]
-
-    public async Task<IActionResult> Add(TodoDto todoDto,string sessionId)
-    {
-        var user = await _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
-        if (user == null)
-            return CreateActionResult(
-                CustomResponseDto<NoContentDto>.Fail(StatusCodes.Status404NotFound, $"Sessionid {sessionId} does not exist"));
-
-        var todoEntity = await _toDoService.Create(todoDto);
-        todoEntity.UserInfo = user;
-        user.ToDos.Add(todoEntity);
-        await _userInfoService.Update(user);
-
-
-        return CreateActionResult(
-            CustomResponseDto<TodoDto>.Succes(StatusCodes.Status201Created, todoDto));
-
     }
     
     [HttpGet("[action]/{sessionId}")]
@@ -49,17 +27,25 @@ public class TodoController : CustomBaseController
     [HttpGet("[action]/{sessionId}/{ListName}")]
     public async Task<IActionResult> GetAllByListName(string sessionId, string ListName)
     {
+        IActionResult actionResult;
+        string responseMessage = string.Empty;
         var user =await  _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
-        if(user == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status401Unauthorized,$"User does not exist or Logged out sessionid:{sessionId}"));
+        var toDos = await _toDoService.GetBylistNameAsync(ListName,sessionId);
+
+        if (user == null)
+            responseMessage += $"User does not exist or Logged out sessionid:{sessionId}\n";
+        
+        if (toDos.Count <= 0)
+            responseMessage += $"ListName: {ListName} does not exist";
+
+        if (!string.IsNullOrEmpty(responseMessage))
+        {
+            actionResult =
+                CreateActionResult(CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound, responseMessage));
+            return actionResult;
+        }
 
         
-        var toDos = await _toDoService.GetBylistNameAsync(ListName,sessionId);
-        if (toDos.Count <= 0)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status404NotFound,$"ListName: {ListName} does not exist"));
-   
         List<ToDoResponseDto> toDoResponseDtos = new List<ToDoResponseDto>();
         foreach (var toDo in toDos)
         {
@@ -72,44 +58,24 @@ public class TodoController : CustomBaseController
                 IsDone = toDo.IsDone
             });
         }
-        return CreateActionResult(
-            CustomResponseDto<ToDoResponseDto>.SuccesWithList(StatusCodes.Status200OK,toDoResponseDtos));
+        actionResult = CreateActionResult(
+            CustomResponseListDataDto<ToDoResponseDto>.Success(StatusCodes.Status200OK,toDoResponseDtos));
+        return actionResult;
+
     }
-
-    [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> UpdateToDoStatusById(string sessionId,int id)
-    {
-        var user = await  _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
-        if (user == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
-
-
-        var toDo = await _toDoService.UpdateToDoStatusById(sessionId,id);
-        
-        if(toDo == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status404NotFound,"ToDo does not exist"));
-        var toDoResponseDto = new ToDoResponseDto()
-        {
-                
-            Title = toDo.Title,
-            TodoContext = toDo.TodoContext,
-            DueTime = toDo.DueTime,
-            IsDone = toDo.IsDone
-        };
-
-        return CreateActionResult(
-            CustomResponseDto<ToDoResponseDto>.Succes(StatusCodes.Status200OK,toDoResponseDto));    }
-
-
+    
     [HttpGet("[action]/{sessionId}")]
     public async Task<IActionResult> GetCompletedToDos(string sessionId)
     {
+        IActionResult actionResult;
         var user =await  _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
-        if(user == null)
-            return CreateActionResult(
+        if (user == null)
+        {
+            actionResult = CreateActionResult(
                 CustomResponseDto<TodoDto>.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+            return actionResult;
+        }
+           
 
         var toDos = await _toDoService.GetCompletedToDos(sessionId);
         List<ToDoResponseDto> toDoResponseDtos = new List<ToDoResponseDto>();
@@ -124,48 +90,123 @@ public class TodoController : CustomBaseController
                 IsDone = toDo.IsDone
             });
         }
-        return CreateActionResult(
-            CustomResponseDto<ToDoResponseDto>.SuccesWithList(StatusCodes.Status200OK,toDoResponseDtos));
+        actionResult = CreateActionResult(
+            CustomResponseListDataDto<ToDoResponseDto>.Success(StatusCodes.Status401Unauthorized,toDoResponseDtos));
+        return actionResult;
     }
-    
+
     [HttpPost("[action]/{sessionId}/{id}")]
     public async Task<IActionResult> UpdateToDo(string sessionId,TodoDto todoDto,int id)
     {
+        IActionResult actionResult;
         var user = await _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
         if (user == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
-
-
+        {
+            actionResult = CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+            return actionResult;
+        }
         var updatedTodo = await _toDoService.Update(todoDto,id,user.UserInfoDetailed.SessionGUID);
-        if(updatedTodo == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status404NotFound,"ToDo id does not exist"));
+        if (updatedTodo == null)
+        {
+            actionResult = CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound,"ToDo id does not exist"));
+            return actionResult;
+        }
 
         await _toDoService.Update(updatedTodo);
         
-        return CreateActionResult(
-            CustomResponseDto<ToDo>.Succes(StatusCodes.Status200OK,updatedTodo));   
+        actionResult = CreateActionResult(
+            CustomResponseDto<ToDo>.Succes(StatusCodes.Status200OK,updatedTodo));
+        return actionResult;
+
+    }
+
+    [HttpPost("[action]/{sessionId}/{id}")]
+    public async Task<IActionResult> UpdateToDoStatusById(string sessionId,int id)
+    {
+        IActionResult actionResult;
+        var user = await  _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
+        if (user == null)
+        {
+            actionResult = CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+            return actionResult;
+        }
+        
+        var toDo = await _toDoService.UpdateToDoStatusById(sessionId,id);
+
+        if (toDo == null)
+        {
+            actionResult = CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound,"ToDo does not exist"));
+            return actionResult;
+        }
+             
+        var toDoResponseDto = new ToDoResponseDto()
+        {
+                
+            Title = toDo.Title,
+            TodoContext = toDo.TodoContext,
+            DueTime = toDo.DueTime,
+            IsDone = toDo.IsDone
+        };
+
+        actionResult = CreateActionResult(
+            CustomResponseDto<ToDoResponseDto>.Succes(StatusCodes.Status200OK,toDoResponseDto));
+        return actionResult;
 
     }
     
-    
+    [HttpPost("[action]/{sessionId}")]
+
+    public async Task<IActionResult> Add(TodoDto todoDto,string sessionId)
+    {
+        IActionResult actionResult;
+        var user = await _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
+        if (user == null)
+        {
+            actionResult = CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound, $"Sessionid {sessionId} does not exist"));
+            return actionResult;
+        }
+
+        var todoEntity = await _toDoService.Create(todoDto);
+        todoEntity.UserInfo = user;
+        
+        user.ToDos.Add(todoEntity);
+        await _userInfoService.Update(user);
+        
+        actionResult = CreateActionResult(
+            CustomResponseDto<TodoDto>.Succes(StatusCodes.Status201Created, todoDto));
+        return actionResult;
+
+    }
     [HttpPost("[action]/{sessionId}/{id}")]
     public async Task<IActionResult> Remove (string sessionId, int id)
     {
+        IActionResult actionResult;
         var user = await _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
         if (user == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+        {
+            actionResult =CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status401Unauthorized,"User does not exist or Logged out"));
+            return actionResult;
 
-
+        }
+        
         var todo = await _toDoService.Remove(sessionId, id);
         if (todo == null)
-            return CreateActionResult(
-                CustomResponseDto<TodoDto>.Fail(StatusCodes.Status404NotFound,"ToDo id does not exist"));
+        {
+            actionResult = CreateActionResult(
+                CustomResponseNoDataDto.Response(StatusCodes.Status404NotFound,"ToDo id does not exist"));
+            return actionResult;
 
-        return CreateActionResult(
-            CustomResponseDto<ToDo>.Succes(StatusCodes.Status200OK));   
+        }
+
+        actionResult = CreateActionResult(
+            CustomResponseDto<ToDo>.Succes(StatusCodes.Status200OK));
+        return actionResult;   
         
     }
 
