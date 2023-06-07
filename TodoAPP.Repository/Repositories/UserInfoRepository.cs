@@ -19,22 +19,6 @@ public class UserInfoRepository:GenericRepository<UserInfo>,IUserInfoRepository
     {
         return   _dbSet.Include(x=>x.UserInfoDetailed).AsNoTracking();
     }
-
-    public async Task<IQueryable<UserInfo>> GetUserInfoWithDetailsById(int id)
-    {
-        return _dbSet.Include(x => x.UserInfoDetailed).Where(x => x.Id == id &&  !x.IsDeleted) ;
-    }
-
-    public Task<UserInfo> SetUserDetailInfo(UserInfo userInfo)
-    {
-        return _dbSet.Where(x => x.UserName == userInfo.UserName && !x.IsDeleted).SingleOrDefaultAsync();
-    }
-
-    public async Task<UserInfo?> GetUserInfoWithDetailsByUsername(string username)
-    {
-        return await _dbSet.Include(x=> x.UserInfoDetailed).Where(x => x.UserName == username && !x.IsDeleted).FirstOrDefaultAsync();
-    }
-
     public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
     {
         return await _dbSet.Include(x=> x.UserInfoDetailed).Where(x => x.Email == email && !x.IsDeleted)

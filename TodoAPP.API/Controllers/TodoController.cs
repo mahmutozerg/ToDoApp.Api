@@ -103,7 +103,7 @@ public class TodoController : CustomBaseController
             });
         }
         actionResult = CreateActionResult(
-            CustomResponseListDataDto<ToDoResponseDto>.Success(StatusCodes.Status401Unauthorized,toDoResponseDtos));
+            CustomResponseListDataDto<ToDoResponseDto>.Success(StatusCodes.Status200OK,toDoResponseDtos));
         return actionResult;
     }
 

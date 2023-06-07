@@ -117,11 +117,7 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
         return userInfo;    
     }
 
-    public async Task<IEnumerable<UserInfo>> GetAllUserInfoWithDetails()
-    {
-        var entity =  await _userInfoRepository.GetAllUserInfoWithDetails();
-        return entity;
-    }
+
     
    
 
