@@ -16,9 +16,9 @@ public class ToDoService:Service<ToDo>,IToDoService
         _toDoRepository = toDoRepository;
     }
 
-    public async Task<IQueryable<ToDo>> GetAllAsync()
+    public async Task<List<ToDo>> GetAllAsync(string sessionId)
     {
-        return await _toDoRepository.GetAllAsync();
+        return await _toDoRepository.GetWithFullUserInfo(sessionId);
     }
 
     public Task<ToDo> Create(TodoDto todoDto)
@@ -41,19 +41,13 @@ public class ToDoService:Service<ToDo>,IToDoService
         return await _toDoRepository.GetBylistNameAsync(listName,sessionId);
     }
 
-    public async Task<List<ToDo>> GetWithFullUserInfo(string sessionId)
+    public async Task<ToDo?> UpdateToDoStatusById(string sessionId,int id)
     {
-        return await _toDoRepository.GetWithFullUserInfo(sessionId);
-    }
-
-    public async Task<ToDo?> UpdateToDoStatusById(int id)
-    {
-        var toDo = await _toDoRepository.GetByIdAsync(id);
+        var toDo = await _toDoRepository.GetByIdAsync(sessionId,id);
         if (toDo != null)
         {
             toDo.IsDone = !toDo.IsDone;
-            _toDoRepository.Update(toDo);
-            await _unitOfWork.CommitAsync();
+            await Update(toDo);
         }
         return toDo;
     }
@@ -66,9 +60,9 @@ public class ToDoService:Service<ToDo>,IToDoService
         return completedToDos.ToList();
     }
 
-    public  Task<ToDo?> Update(TodoDto todoDto, int id, UserInfo user)
+    public async Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId)
     {
-        var toDo = _toDoRepository.Where(x => x.Id == id).FirstOrDefault();
+        var toDo = await _toDoRepository.GetByIdAsync(sessionId, id);
 
         if (toDo != null)
         {
@@ -77,9 +71,20 @@ public class ToDoService:Service<ToDo>,IToDoService
             toDo.ListName = todoDto.ListName == string.Empty ? toDo.ListName : todoDto.ListName;
             toDo.DueTime = todoDto.DueTime == toDo.DueTime ? toDo.DueTime : todoDto.DueTime;
         }
-        
-        return Task.FromResult(toDo);
+
+        return toDo;
 
     }
-    
+
+    public   async Task<ToDo> Remove(string sessionId,int id)
+    {
+        var todo = await _toDoRepository.GetWithFullUserInfoById(sessionId,id);
+        if (todo != null)
+        {
+            todo.IsDeleted = true;
+            await Update(todo);
+        }
+
+        return todo;
+    }
 }

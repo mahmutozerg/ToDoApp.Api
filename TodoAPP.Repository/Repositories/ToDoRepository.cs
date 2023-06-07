@@ -21,6 +21,15 @@ public class ToDoRepository:GenericRepository<ToDo>,IToDoRepository
         return Task.FromResult(_dbSet.AsNoTracking());
     }
 
+    public async Task<ToDo?> GetByIdAsync(string sessionId,int id)
+    {
+        var todos = await _dbSet.Include(x => x.UserInfo)
+            .ThenInclude(x => x.UserInfoDetailed)
+            .Where(x=>x.UserInfo.UserInfoDetailed.SessionGUID == sessionId).Where(x=>x.Id == id)
+            .FirstOrDefaultAsync();
+        return todos;
+    }
+
     public async Task<List<ToDo>> GetBylistNameAsync(string listName, string sessionId)
     {
         var relatedUserToDos = await GetWithFullUserInfo(sessionId);
@@ -33,5 +42,10 @@ public class ToDoRepository:GenericRepository<ToDo>,IToDoRepository
             Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted)));
     }
 
+    public async Task<ToDo> GetWithFullUserInfoById(string sessionId, int id)
+    {
+        return await _dbSet.Include(x => x.UserInfo).ThenInclude(x => x.UserInfoDetailed)
+            .Where(x => x.UserInfo.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted&& x.Id == id).FirstOrDefaultAsync();
 
+    }
 }

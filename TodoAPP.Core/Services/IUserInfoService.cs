@@ -9,10 +9,8 @@ public interface IUserInfoService:IService<UserInfo>
     Task<string> Login(UserDto userDto);
 
     Task<IEnumerable<UserInfo>> GetAllUserInfoWithDetails();
-    Task<IQueryable<UserInfo>> GetUserInfoWithDetailsById(int id);
     Task<string> CheckUserExist(UserDto userDto);
 
-    Task<UserInfo?> GetUserInfoWithDetailsByUsername(string username);
     Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email);
     Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId);
 

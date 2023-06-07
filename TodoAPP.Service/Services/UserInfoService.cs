@@ -47,8 +47,13 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
     
     public async Task<string> Login(UserDto userDto)
     {
-        var user = await _userInfoRepository.Where(x => (x.UserName == userDto.UserName || x.Email == userDto.Email)).AsNoTracking().SingleOrDefaultAsync();
-        
+        var user = await _userInfoRepository.GetUserInfoWithDetailsByEmail(userDto.Email);
+
+        if (user.UserInfoDetailed.SessionGUID !=string.Empty)
+        {
+            return "User already logged in";
+        }
+
         var passwordHash = PasswordHasher.ComputeHash(userDto.Password, user!.PasswordSalt, _pepper, _iteration);
 
         if (passwordHash != user.PasswordHash)
@@ -83,12 +88,7 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
         return errorMessage;
     }
 
-    public async Task<UserInfo?> GetUserInfoWithDetailsByUsername(string username)
-    {
-        return  await _userInfoRepository.GetUserInfoWithDetailsByUsername(username);
-         
-    }
-
+   
     public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
     {
         return  await _userInfoRepository.GetUserInfoWithDetailsByEmail(email);
@@ -103,11 +103,7 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
     {
         return await _userInfoRepository.GetAllUserInfoWithDetails();
     }
-
-    public async Task<IQueryable<UserInfo>> GetUserInfoWithDetailsById(int id)
-    {
-        return await _userInfoRepository.GetUserInfoWithDetailsById(id);
-    }    
+    
     public async Task<UserInfo?> asda(string username)
     {
         return await _userInfoRepository.GetUserInfoWithDetailsByUsername(username);

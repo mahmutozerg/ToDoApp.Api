@@ -42,6 +42,7 @@ public class GenericRepository<T>:IGenericRepository<T> where T :class
 
     public void Remove(T? entity)
     {
+         
         _dbSet.Remove(entity);
     }
 

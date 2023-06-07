@@ -68,6 +68,8 @@ public class UserController:CustomBaseController
                 };
                 return CreateActionResult(CustomResponseDto<UserGUIDDTO>.Succes(StatusCodes.Status200OK,sessionResponse));
             }
+            return CreateActionResult(CustomResponseDto<UserLoginDto>.Fail(StatusCodes.Status409Conflict,loginInformationMessage ));
+
         }
         
         return CreateActionResult(CustomResponseDto<UserLoginDto>.Fail(StatusCodes.Status401Unauthorized,$"Check your credentials {userDto.Email}:{userDto.Password}" ));
