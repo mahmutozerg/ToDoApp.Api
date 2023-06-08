@@ -9,8 +9,6 @@ p
 @TodoAPP.Service/obj/Debug/net7.0/TodoAPP.Service.AssemblyInfo.cs,3\9\394438bfe43037e2dd413c121145dd79b07c17a7
 r
 BTodoAPP.Service/obj/Debug/net7.0/TodoAPP.Service.GlobalUsings.g.cs,5\d\5d4feb3e1d1982a1d2a26cc0bf1ec946fc0c8227
-N
-TodoAPP.API/WeatherForecast.cs,c\9\c9236de3305d140507e75fe4f374304971b78d56
 L
 TodoAPP.API/appsettings.json,a\d\ad3a9135182a4cb1e4b3c46dfc2ead5be215a4bb
 X
@@ -71,7 +69,11 @@ W
 'TodoAPP.Core/Models/UserInfoDetailed.cs,b\a\ba432174dac131c04341b4e68fa8fb88dbf499a2
 K
 TodoAPP.Core/Models/ToDo.cs,c\5\c53eacc0b27d99625d668b72003b845f972f64ff
-L
-TodoAPP.Core/DTOs/TodoDto.cs,8\0\805b7ddd90f2c4b07b2fa015aa1e9dce7ea5e555
-Q
-!TodoAPP.Core/DTOs/UserLoginDto.cs,1\8\18d08279de368cf3f72c6fd0d53811d86e65135b
+F
+TodoAPP.API/Program.cs,5\5\559fd15963c6867cca36cd5dca1e2eb62809a559
+_
+/TodoAPP.API/Controllers/CustomBaseController.cs,c\0\c0ba55726708a2687364a308b49ad052b7dabc24
+_
+/TodoAPP.Core/Repositories/IGenericRepository.cs,a\4\a4453cc951d0d7ab346ba471f29a745ee00e7ce5
+\
+,TodoAPP.Core/Repositories/IToDoRepository.cs,d\e\def89036bcc4b3680b5f33a5b00b769247b81374

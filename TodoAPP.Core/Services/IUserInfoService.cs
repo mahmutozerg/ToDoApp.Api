@@ -14,4 +14,7 @@ public interface IUserInfoService:IService<UserInfo>
     Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId);
     Task<UserInfo?> Remove(string email,UserInfo userInfo);
 
+    string CalculateHash(string password, string salt);
+
+
 }

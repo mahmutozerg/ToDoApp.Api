@@ -17,18 +17,21 @@ public class UserInfoRepository:GenericRepository<UserInfo>,IUserInfoRepository
 
     public async Task<IQueryable<UserInfo>> GetAllUserInfoWithDetails()
     {
-        return   _dbSet.Include(x=>x.UserInfoDetailed).AsNoTracking();
+        var dbSet=   _dbSet.Include(x=>x.UserInfoDetailed).AsNoTracking();
+        return dbSet;
     }
     public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
     {
-        return await _dbSet.Include(x=> x.UserInfoDetailed).Where(x => x.Email == email && !x.IsDeleted)
+        var userInfo= await _dbSet.Include(x=> x.UserInfoDetailed).Where(x => x.Email == email && !x.IsDeleted)
             .FirstOrDefaultAsync();
+        return userInfo;
     }
 
     public async Task<UserInfo?> GetUserInfoWithDetailsBySessionId(string sessionId)
     {
-        return await _dbSet.Include(x => x.UserInfoDetailed)
+        var userInfo=  await _dbSet.Include(x => x.UserInfoDetailed)
             .Where(x => x.UserInfoDetailed.SessionGUID == sessionId && !x.IsDeleted).FirstOrDefaultAsync();
+        return userInfo;
     }
 
 

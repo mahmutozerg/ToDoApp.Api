@@ -24,6 +24,7 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public Task<ToDo> Create(TodoDto todoDto)
     {
+        // creates a new  todoo entity and returns it
         var entity  = new ToDo()
         {
             ListName = todoDto.ListName,
@@ -45,6 +46,7 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public async Task<ToDo?> UpdateToDoStatusById(string sessionId,int id)
     {
+        // get the todoo by id and update its status
         var toDo = await _toDoRepository.GetByIdAsync(sessionId,id);
         if (toDo != null)
         {
@@ -65,6 +67,11 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public async Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId)
     {
+        /*
+         *   1- get the todoo by id
+         *   2- If updated infos are different from the old ones, update them
+         *   3- return the updated todoo
+         */
         var toDo = await _toDoRepository.GetByIdAsync(sessionId, id);
 
         if (toDo != null)
@@ -81,6 +88,7 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public   async Task<ToDo> Remove(string sessionId,int id)
     {
+        // get the todoo by id and sets its IsDeleted property to true
         var todo = await _toDoRepository.GetWithFullUserInfoById(sessionId,id);
         if (todo != null)
         {

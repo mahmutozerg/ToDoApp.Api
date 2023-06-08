@@ -10,7 +10,6 @@ public class UserInfoDetailedRepository : GenericRepository<UserInfoDetailed>,IU
 {
     private readonly AppDbContext _context;
     private readonly DbSet<UserInfoDetailed> _dbSet;
-
     
     public void UpdateOnLogin(UserInfoDetailed userInfoDetailed)
     {

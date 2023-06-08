@@ -21,7 +21,6 @@ public class UserInfoDetailedService:Service<UserInfoDetailed>,IUserInfoDetailed
         };
         return entity;
     }
-
     public void UpdateOnLogin(UserInfoDetailed userInfoDetailed)
     {
         _userInfoDetailedRepository.UpdateOnLogin(userInfoDetailed);

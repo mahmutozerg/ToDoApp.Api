@@ -27,11 +27,11 @@ public class UserController:CustomBaseController
     {
         IActionResult actionResult;
         UserInfoDetailed newUserDetails = await _userInfoDetailedService.CreateInitial();
-        var errorMessage = await _userInfoService.Register(userDto,newUserDetails);
+        var userExistErrorMessage = await _userInfoService.Register(userDto,newUserDetails);
 
-        if (!string.IsNullOrEmpty(errorMessage))
+        if (!string.IsNullOrEmpty(userExistErrorMessage))
         {
-            actionResult= CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status409Conflict, errorMessage));
+            actionResult= CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status409Conflict, userExistErrorMessage));
             return actionResult;
         }
         actionResult = CreateActionResult(CustomResponseDto<UserInfoDetailed>.Succes(StatusCodes.Status201Created,newUserDetails));
@@ -48,27 +48,27 @@ public class UserController:CustomBaseController
             Password = userDto.Password
 
         };
-        var user = await _userInfoService.GetUserInfoWithDetailsByEmail(mappedUserDto.Email);
+        var userInfoWithDetails = await _userInfoService.GetUserInfoWithDetailsByEmail(mappedUserDto.Email);
 
-        if (user != null)
+        if (userInfoWithDetails != null)
         {
             var loginErrorMessage = await _userInfoService.Login(mappedUserDto);
             if (string.IsNullOrEmpty(loginErrorMessage))
             {
                 
-                _userInfoDetailedService.UpdateOnLogin(user.UserInfoDetailed);
-                await _userInfoService.Update(user);
+                _userInfoDetailedService.UpdateOnLogin(userInfoWithDetails.UserInfoDetailed);
+                await _userInfoService.Update(userInfoWithDetails);
 
                 // Create a new cookie with the specified name and value
 
                 var sessionResponse = new UserGUIDDTO()
                 {
-                    SessionGUID = user.UserInfoDetailed.SessionGUID
+                    SessionGUID = userInfoWithDetails.UserInfoDetailed.SessionGUID
                 };
                 actionResult= CreateActionResult(CustomResponseDto<UserGUIDDTO>.Succes(StatusCodes.Status200OK,sessionResponse));
                 return actionResult;
             }
-            actionResult= CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status401Unauthorized,$"User already logged in session id {user.UserInfoDetailed.SessionGUID}" ));
+            actionResult= CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status401Unauthorized,$"User already logged in session id {userInfoWithDetails.UserInfoDetailed.SessionGUID}" ));
             return actionResult;
         }
         
@@ -79,16 +79,17 @@ public class UserController:CustomBaseController
     public async Task<IActionResult> Logout(UserGUIDDTO userDto)
     {
         IActionResult actionResult;
-        var user = await _userInfoDetailedService.Where(x => x.SessionGUID == userDto.SessionGUID).FirstOrDefaultAsync();
-        if (user == null || string.IsNullOrEmpty(user.SessionGUID))
+        var userInfoWithDetails = await _userInfoDetailedService.Where(x => x.SessionGUID == userDto.SessionGUID).FirstOrDefaultAsync();
+       
+        if (userInfoWithDetails == null || string.IsNullOrEmpty(userInfoWithDetails.SessionGUID))
         {
             actionResult=  CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound,$"User already logged out or user does not exist check session id: {userDto.SessionGUID}" ));
             return actionResult;
         }
 
-        user.IsUserActive = false;
-        user.SessionGUID = string.Empty;
-        await _userInfoDetailedService.Update(user);
+        userInfoWithDetails.IsUserActive = false;
+        userInfoWithDetails.SessionGUID = string.Empty;
+        await _userInfoDetailedService.Update(userInfoWithDetails);
         
         actionResult = CreateActionResult(CustomResponseNoDataDto.Success(StatusCodes.Status200OK));
         return actionResult;
@@ -104,13 +105,13 @@ public class UserController:CustomBaseController
             Email = userDto.Email,
             Password = userDto.Password
         };
-        var user = await _userInfoService.GetUserInfoWithDetailsByEmail(mappedUserDto.Email);
+        var userInfoWithDetails = await _userInfoService.GetUserInfoWithDetailsByEmail(mappedUserDto.Email);
         
-        if (user != null)
+        if (userInfoWithDetails != null)
         {
             var guidDto = new UserGUIDDTO()
             {
-                SessionGUID = user.UserInfoDetailed.SessionGUID
+                SessionGUID = userInfoWithDetails.UserInfoDetailed.SessionGUID
             };
             
             await Logout(guidDto);
@@ -118,7 +119,6 @@ public class UserController:CustomBaseController
             var loginErrorMessage = await _userInfoService.Login(mappedUserDto);
             if (string.IsNullOrEmpty(loginErrorMessage))
             {                
-                var  userInfoWithDetails =   await _userInfoService.GetUserInfoWithDetailsByEmail(mappedUserDto.Email);
                 await _userInfoService.Remove(userDto.Email, userInfoWithDetails);
                 
                 actionResult= CreateActionResult(CustomResponseNoDataDto.Success(StatusCodes.Status200OK ));
@@ -128,7 +128,35 @@ public class UserController:CustomBaseController
         }
         actionResult= CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status401Unauthorized,$"Check your credentials {userDto.Email}:{userDto.Password}" ));
         return actionResult;
+    }
+
+    [HttpPost("[action]/{sessionId}")]
+    public async Task<IActionResult> UpdateInformation(UserDto userDto,string sessionId)
+    {
+        IActionResult actionResult;
+
+        var isUserExist = await _userInfoService.CheckUserExist(userDto); 
+        var userInfoWithDetails = await _userInfoService.GetUserInfoWithDetailsBySessionId(sessionId);
+
+        if (!string.IsNullOrEmpty(isUserExist) && userDto.UserName != userInfoWithDetails.UserName && userDto.Email != userInfoWithDetails.Email)
+        {
+            actionResult = CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status409Conflict,isUserExist ));
+            return actionResult;
+        }
+        if (userInfoWithDetails == null)
+        {
+            actionResult = CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound,$"User does not exist check session id: {sessionId}" ));
+            return actionResult;
+        }
+        userInfoWithDetails.UserName = userDto.UserName;
+        userInfoWithDetails.Email = userDto.Email;
+        userInfoWithDetails.PasswordHash = _userInfoService.CalculateHash(userDto.Password,userInfoWithDetails.PasswordSalt);
+        await _userInfoService.Update(userInfoWithDetails);
+        
+        actionResult = actionResult = CreateActionResult(CustomResponseNoDataDto.Success(StatusCodes.Status200OK ));
+        return actionResult;
 
     }
+
 }
 

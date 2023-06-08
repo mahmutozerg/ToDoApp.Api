@@ -18,7 +18,6 @@ public class CustomResponseDto<T>
     {
         return new CustomResponseDto<T> {StatusCode = statusCode};
     }
-    
     public static CustomResponseDto<T> Fail(int statusCode,List<string> errors)
     {
         return new CustomResponseDto<T> {Errors = errors, StatusCode = statusCode};

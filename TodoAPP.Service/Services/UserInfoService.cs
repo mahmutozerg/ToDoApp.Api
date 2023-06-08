@@ -1,12 +1,9 @@
-using System.Security.Cryptography;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using TodoAPP.Core.DTOs;
 using TodoAPP.Core.Models;
 using TodoAPP.Core.Repositories;
 using TodoAPP.Core.Services;
 using TodoAPP.Core.UnitOfWorks;
-using TodoAPP.Repository.Repositories;
 
 namespace TodoAPP.Service.Services;
 
@@ -23,8 +20,23 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
         _userInfoRepository = userInfoRepository;
         _pepper = "Mahmut";
     }
+
+
+    public string CalculateHash(string password, string salt)
+    {
+        return PasswordHasher.ComputeHash(password, salt, _pepper, _iteration);
+    }
+   
     public async Task<string> Register(UserDto userDto,UserInfoDetailed userInfoDetailed)
     {
+        /*
+           1- Checks if user exist
+           2- If user exist return error message
+           3- If user not exist creates new user returns empty string
+           4- Return success message
+        
+         */
+        
         var errorMessage = await CheckUserExist(userDto);
 
         if (string.IsNullOrEmpty(errorMessage))
@@ -39,7 +51,7 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
                 ToDos = new List<ToDo>()
 
             };
-            newUser.PasswordHash= PasswordHasher.ComputeHash(userDto.Password, newUser.PasswordSalt, _pepper, _iteration);
+            newUser.PasswordHash= CalculateHash(userDto.Password, newUser.PasswordSalt);
         
             await _userInfoRepository.AddAsync(newUser);
             await _unitOfWork.CommitAsync();
@@ -52,16 +64,23 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
     
     public async Task<string> Login(UserDto userDto)
     {
-        var user = await _userInfoRepository.GetUserInfoWithDetailsByEmail(userDto.Email);
+        /*
+           1- Tries to get user by email
+           2- If user already logged in return error message
+           3- If user not logged in checks password
+           4- If password is wrong return error message
+           5- If password is correct return empty string
+         */
+        var userInfoWithDetails = await _userInfoRepository.GetUserInfoWithDetailsByEmail(userDto.Email);
 
-        if (user.UserInfoDetailed.SessionGUID !=string.Empty)
+        if (userInfoWithDetails.UserInfoDetailed.SessionGUID !=string.Empty)
         {
             return "User already logged in";
         }
 
-        var passwordHash = PasswordHasher.ComputeHash(userDto.Password, user!.PasswordSalt, _pepper, _iteration);
+        var passwordHash = PasswordHasher.ComputeHash(userDto.Password, userInfoWithDetails!.PasswordSalt, _pepper, _iteration);
 
-        if (passwordHash != user.PasswordHash)
+        if (passwordHash != userInfoWithDetails.PasswordHash)
         {
             return "Please check your credentials";
         }
@@ -73,6 +92,11 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
 
     public async Task<string> CheckUserExist(UserDto userDto)
     {
+        /*
+           1- Checks if user exist by email or username
+           2- If user exist return error message
+           3- If user not exist return empty string
+         */
         var errorMessage = string.Empty;
 
         var isUsernameExist = await _userInfoRepository.Where(x => x.UserName == userDto.UserName).AsNoTracking().AnyAsync();
@@ -96,6 +120,7 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
    
     public async Task<UserInfo?> GetUserInfoWithDetailsByEmail(string email)
     {
+        
         var entity =  await _userInfoRepository.GetUserInfoWithDetailsByEmail(email);
         return entity;
     }
@@ -108,6 +133,7 @@ public class UserInfoService:Service<UserInfo>,IUserInfoService
 
     public async Task<UserInfo?> Remove(string email,UserInfo userInfo)
     {
+        // Sets user isDeleted property to true
         if (userInfo != null)
         {
             userInfo.IsDeleted = true;

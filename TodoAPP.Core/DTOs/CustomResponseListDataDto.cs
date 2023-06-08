@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace TodoAPP.Core.DTOs;
 
 public class CustomResponseListDataDto<T>

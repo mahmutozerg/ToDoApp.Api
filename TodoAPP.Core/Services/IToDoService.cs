@@ -12,5 +12,4 @@ public interface IToDoService:IService<ToDo>
     Task<List<ToDo>> GetCompletedToDos(string sessionId);
     Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId);
     Task<ToDo> Remove(string sessionId, int id);
-
 }
