@@ -1,6 +1,6 @@
 namespace TodoAPP.Core.DTOs;
 
-public class UserGUIDDTO
+public class SessionGuiddto
 {
     public string SessionGUID { get; set; }
 

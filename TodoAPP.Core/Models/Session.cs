@@ -3,14 +3,15 @@ using System.Text.Json.Serialization;
 
 namespace TodoAPP.Core.Models;
 
-public  class UserInfoDetailed
+public  class Session
 {
-    [Key]
     public int Id { get; set; }
     public DateTime LastLogin { get; set; }
-    public bool IsUserActive { get; set; }
+    public bool IsSessionActive { get; set; }
     public string SessionGUID { get; set; }
     public DateTime CreatedAt { get; set; }
+    public DateTime? EndedAt { get; set; }
     
-    public UserInfo UserInfo;
+    public User User;
+    public int UserId;
 }

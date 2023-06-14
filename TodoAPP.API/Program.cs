@@ -27,11 +27,13 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
 
-builder.Services.AddScoped(typeof(IUserInfoRepository), typeof(UserInfoRepository));
-builder.Services.AddScoped(typeof(IUserInfoService), typeof(UserInfoService));
+builder.Services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
 
-builder.Services.AddScoped( typeof(IUserInfoDetailedRepository),typeof(UserInfoDetailedRepository));
-builder.Services.AddScoped(typeof(IUserInfoDetailedService), typeof(UserInfoDetailedService));
+builder.Services.AddScoped(typeof(IAuthenticationService), typeof(AuthenticationService));
+builder.Services.AddScoped( typeof(ISessionRepository),typeof(SessionRepository));
+
+builder.Services.AddScoped(typeof(ISessionService), typeof(SessionService));
 builder.Services.AddScoped(typeof(IToDoRepository), typeof(ToDoRepository));
 builder.Services.AddScoped(typeof(IToDoService), typeof(ToDoService));
 

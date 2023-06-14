@@ -12,7 +12,7 @@ public class CustomResponseNoDataDto
     public static CustomResponseNoDataDto Success(int statusCode)
     {
         return new CustomResponseNoDataDto { StatusCode = statusCode,Errors = Array.Empty<string>()};
-    }
+    }    
 
 
 }

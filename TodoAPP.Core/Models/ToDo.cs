@@ -14,7 +14,7 @@ public class ToDo
     [JsonIgnore]
     public bool  IsDeleted { get; set; }
     [JsonIgnore]
-    public int UserInfoId { get; set; }
+    public int UserId { get; set; }
     [JsonIgnore]
-    public  UserInfo UserInfo { get; set; }
+    public  User User { get; set; }
 }

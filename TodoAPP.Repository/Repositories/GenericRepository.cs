@@ -6,21 +6,13 @@ namespace TodoAPP.Repository.Repositories;
 
 public class GenericRepository<T>:IGenericRepository<T> where T :class
 {
-    private readonly AppDbContext _context;
     private readonly DbSet<T> _dbSet;
 
     public GenericRepository(AppDbContext context)
     {
-        _context = context;
-        _dbSet = _context.Set<T>();
+        _dbSet = context.Set<T>();
     }
     
-    public async Task<T?> GetByIdAsync(int id)
-    {
-        var entity =  await _dbSet.FindAsync(id);
-        return entity;
-    }
-
     public IQueryable<T?> Where(Expression<Func<T?, bool>> expression)
     {
         var entities =  _dbSet.Where(expression);

@@ -5,11 +5,12 @@ namespace TodoAPP.Core.Services;
 
 public interface IToDoService:IService<ToDo>
 {
-    Task<List<ToDo>> GetAllAsync(string sessionId);
-    Task<ToDo> Create(TodoDto todoDto);
-    Task<List<ToDo>> GetBylistNameAsync(string listName, string sessionId);
+    Task<List<ToDo?>?> GetAllAsync(string sessionId);
+    Task<ToDo?> CreateToDo(TodoDto todoDto, string sessionId);
+    Task<List<ToDo>?> GetBylistNameAsync(string listName, string sessionId);
     Task<ToDo?> UpdateToDoStatusById(string sessionId,int id);
-    Task<List<ToDo>> GetCompletedToDos(string sessionId);
+    Task<List<ToDo?>?> GetCompletedToDos(string sessionId);
     Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId);
-    Task<ToDo> Remove(string sessionId, int id);
+    Task<ToDo?> Remove(string sessionId, int id);
+    List<ToDoResponseDto> ConvertToDoListToResponseDtoList(List<ToDo> toDos);
 }

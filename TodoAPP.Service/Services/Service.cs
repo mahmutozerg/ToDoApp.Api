@@ -1,5 +1,4 @@
 using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
 using TodoAPP.Core.Repositories;
 using TodoAPP.Core.Services;
 using TodoAPP.Core.UnitOfWorks;

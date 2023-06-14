@@ -9,14 +9,14 @@ public class CustomResponseDto<T>
     public List<string>? Errors { get; set; }
 
 
-    public static CustomResponseDto<T> Succes(int statusCode,T data)
+    public static CustomResponseDto<T> Success(int statusCode,T data)
     {
         return new CustomResponseDto<T> {Data = data, StatusCode = statusCode,Errors = new List<string>()};
     }
 
-    public static CustomResponseDto<T> Succes(int statusCode)
+    public static CustomResponseDto<T> Success(int statusCode)
     {
-        return new CustomResponseDto<T> {StatusCode = statusCode};
+        return new CustomResponseDto<T> {StatusCode = statusCode,Errors = new List<string>()};
     }
     public static CustomResponseDto<T> Fail(int statusCode,List<string> errors)
     {
