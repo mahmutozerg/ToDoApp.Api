@@ -8,8 +8,7 @@ public interface IAuthenticationService
     string CalculateHash(string password, string salt);
     Task<string> Register(UserDto userDto);
     Task<Session?> Login(UserDto userDto);
-    Task<string> CheckUserExist(UserDto userDto);
-    Task<CustomResponseNoDataDto> Logout(SessionGuiddto sessionDto);
+    Task<Session> Logout(SessionGuiddto sessionDto);
 
 
 }

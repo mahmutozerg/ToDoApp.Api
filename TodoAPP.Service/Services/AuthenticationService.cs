@@ -73,9 +73,8 @@ public class AuthenticationService:IAuthenticationService
         return session;
 
     }
-
-
-    public async Task<string> CheckUserExist(UserDto userDto)
+    
+    private async Task<string> CheckUserExist(UserDto userDto)
     {
         var userExistErrorMessage = string.Empty;
         var isUsernameExist = await _userRepository.AnyAsync(x => x!.UserName == userDto.UserName && !x.IsDeleted);
@@ -90,19 +89,19 @@ public class AuthenticationService:IAuthenticationService
         return userExistErrorMessage;
     }
 
-    public async Task<CustomResponseNoDataDto> Logout(SessionGuiddto sessionDto)
+    public async Task<Session> Logout(SessionGuiddto sessionDto)
     {
         
         var session = await _sessionService.Where(s => s!.SessionGUID == sessionDto.SessionGUID && s.IsSessionActive).FirstOrDefaultAsync();
-        
+
         if ((session == null || string.IsNullOrEmpty(session.SessionGUID)))
-            return CustomResponseNoDataDto.Fail(404, ResponseMessages.SessionNotFound);
+            throw new Exception(ResponseMessages.SessionNotFound);
      
         session.IsSessionActive = false;
         session.EndedAt = DateTime.Now;
         await _sessionService.Update(session);
 
-        return CustomResponseNoDataDto.Success(200);
+        return session;
 
     }
 

@@ -10,6 +10,7 @@ namespace TodoAPP.Service.Services;
 
 public class ToDoService:Service<ToDo>,IToDoService
 {
+    //todo: System exception vs db exception farknı araştır
     private readonly IUserService _userService;
     private readonly IToDoRepository _toDoRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -24,7 +25,7 @@ public class ToDoService:Service<ToDo>,IToDoService
 
     public async Task<List<ToDo?>?> GetAllAsync(string sessionId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session != null)
         {
             var todos = await _toDoRepository.Where(t=> t!.UserId == session.UserId && !t.IsDeleted).AsNoTracking().ToListAsync();
@@ -35,19 +36,19 @@ public class ToDoService:Service<ToDo>,IToDoService
     }
     public async Task<List<ToDo>?> GetBylistNameAsync(string listName, string sessionId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
         {
             throw new Exception(ResponseMessages.SessionNotFound);
         }
         
         var todos =  await _toDoRepository.GetBylistNameAsync(listName,session.UserId);
-        
         return todos;
     }
+    
     public async Task<List<ToDo?>?> GetCompletedToDos(string sessionId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
         {
             throw new Exception(ResponseMessages.SessionNotFound);
@@ -60,7 +61,7 @@ public class ToDoService:Service<ToDo>,IToDoService
     }
     public async Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
         {
             throw new Exception(ResponseMessages.SessionNotFound);
@@ -79,13 +80,11 @@ public class ToDoService:Service<ToDo>,IToDoService
 
         }
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
-
-
     }
     public async Task<ToDo?> UpdateToDoStatusById(string sessionId,int id)
     {
         // get the todoo by id and update its status
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
         {
             throw new Exception(ResponseMessages.SessionNotFound);
@@ -99,14 +98,12 @@ public class ToDoService:Service<ToDo>,IToDoService
             toDo.IsDone = !toDo.IsDone;
             await Update(toDo);
             return toDo;
-
         }
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
-
     }
     public async Task<ToDo?> CreateToDo(TodoDto todoDto, string sessionId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
         {
             throw new Exception(ResponseMessages.SessionNotFound);
@@ -133,7 +130,7 @@ public class ToDoService:Service<ToDo>,IToDoService
     
     public   async Task<ToDo?> Remove(string sessionId,int id)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionId(sessionId);
+        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
         {
             throw new Exception(ResponseMessages.SessionNotFound);
@@ -151,21 +148,5 @@ public class ToDoService:Service<ToDo>,IToDoService
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
     }
 
-    public List<ToDoResponseDto> ConvertToDoListToResponseDtoList(List<ToDo> toDos)
-    {
-        List<ToDoResponseDto>? toDoResponseDtos = new List<ToDoResponseDto>();
-        foreach (var toDo in toDos)
-        {
-            toDoResponseDtos.Add(new ToDoResponseDto()
-            {
-                Id = toDo.Id,
-                Title = toDo.Title,
-                TodoContext = toDo.TodoContext,
-                DueTime = toDo.DueTime,
-                IsDone = toDo.IsDone
-            });
-        }
-
-        return toDoResponseDtos;
-    }
+ 
 }

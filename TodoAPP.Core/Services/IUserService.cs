@@ -7,7 +7,7 @@ public interface IUserService:IService<User>
 {
     Task<User?> GetUserInfoByEmail(string email);
     
-    Task<User?> Remove(User user);
+    Task<User?> RemoveAsync(User user);
     
     Task<string> UpdateUser(UserUpdateDto userUpdateDto, Session? session);
     

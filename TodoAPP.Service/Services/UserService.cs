@@ -25,7 +25,7 @@ public class UserService:Service<User>,IUserService
         return await _userRepository.GetUserInfoByEmail(email);
     }
     
-    public async Task<User?> Remove(User user)
+    public async Task<User?> RemoveAsync(User user)
     {
         // Sets user isDeleted property to true
  

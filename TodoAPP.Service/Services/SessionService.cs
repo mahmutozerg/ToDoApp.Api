@@ -29,7 +29,7 @@ public class SessionService:Service<Session>,ISessionService
         _sessionRepository.UpdateOnLogin(session);
     }
 
-    public async Task<Session?> GetSessionWithUserBySessionId(string sessionId)
+    public async Task<Session?> GetSessionWithUserBySessionIdAsync(string sessionId)
     {
         return await _sessionRepository.GetSessionWithUserBySessionId(sessionId);
     }
