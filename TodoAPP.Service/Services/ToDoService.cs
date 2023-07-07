@@ -9,14 +9,14 @@ using TodoAPP.Core.UnitOfWorks;
 
 namespace TodoAPP.Service.Services;
 
-public class ToDoService:Service<ToDo>,IToDoService
+public class ToDoService:Service<ToDoEntity>,IToDoService
 {
     //todo: System exception vs db exception farknı araştır
     private readonly IUserService _userService;
     private readonly IToDoRepository _toDoRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly  ISessionService _sessionService;
-    public ToDoService(IGenericRepository<ToDo> repository, IUnitOfWork unitOfWork, IToDoRepository toDoRepository, ISessionService sessionService, IUserService userService) : base(repository, unitOfWork)
+    public ToDoService(IGenericRepository<ToDoEntity> repository, IUnitOfWork unitOfWork, IToDoRepository toDoRepository, ISessionService sessionService, IUserService userService) : base(repository, unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _toDoRepository = toDoRepository;
@@ -59,7 +59,7 @@ public class ToDoService:Service<ToDo>,IToDoService
 
         return  CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(completedToDo),200);
     }
-    public async Task<CustomResponseDto<ToDoResponseDto>> Update(TodoDto todoDto, int id, string sessionId)
+    public async Task<CustomResponseDto<ToDoResponseDto>> Update(TodoDto todoDto, string id, string sessionId)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
@@ -81,7 +81,7 @@ public class ToDoService:Service<ToDo>,IToDoService
         }
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
     }
-    public async Task<CustomResponseDto<ToDoResponseDto>> UpdateToDoStatusById(string sessionId, int id)
+    public async Task<CustomResponseDto<ToDoResponseDto>> UpdateToDoStatusById(string sessionId, string id)
     {
         // get the todoo by id and update its status
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
@@ -109,7 +109,7 @@ public class ToDoService:Service<ToDo>,IToDoService
         }
         
         // creates a new  todoo entity and returns it
-        var toDo  = new ToDo()
+        var toDo  = new ToDoEntity()
         {
             ListName = todoDto.ListName,
             CreatedAt = DateTime.Now,
@@ -119,15 +119,15 @@ public class ToDoService:Service<ToDo>,IToDoService
             IsDone = false,
             IsDeleted = false
         };
-        toDo.User = session.User;
-        session.User.ToDos.Add(toDo);
+        toDo.UserEntity = session.UserEntity;
+        session.UserEntity.ToDos.Add(toDo);
 
-        await _userService.Update(session.User);
+        await _userService.Update(session.UserEntity);
         await  _unitOfWork.CommitAsync();
         return  CustomResponseDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDto(toDo),200);
     }
     
-    public   async Task<CustomResponseNoDataDto> Remove(string sessionId, int id)
+    public   async Task<CustomResponseNoDataDto> Remove(string sessionId, string id)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)

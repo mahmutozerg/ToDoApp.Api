@@ -5,13 +5,13 @@ using TodoAPP.Core.UnitOfWorks;
 
 namespace TodoAPP.Service.Services;
 
-public class SessionService:Service<Session>,ISessionService
+public class SessionService:Service<SessionEntity>,ISessionService
 {
     private readonly ISessionRepository _sessionRepository;
     private readonly IUnitOfWork _unitOfWork;
-    public async Task<Session> CreateSession(int id)
+    public async Task<SessionEntity> CreateSession(string id)
     { 
-        var entity = new Session()
+        var entity = new SessionEntity()
         {
             LastLogin = DateTime.Now,
             IsSessionActive = true,
@@ -24,17 +24,17 @@ public class SessionService:Service<Session>,ISessionService
         await _unitOfWork.CommitAsync();
         return entity;
     }
-    public void UpdateOnLogin(Session session)
+    public void UpdateOnLogin(SessionEntity sessionEntity)
     {
-        _sessionRepository.UpdateOnLogin(session);
+        _sessionRepository.UpdateOnLogin(sessionEntity);
     }
 
-    public async Task<Session?> GetSessionWithUserBySessionIdAsync(string sessionId)
+    public async Task<SessionEntity?> GetSessionWithUserBySessionIdAsync(string sessionId)
     {
         return await _sessionRepository.GetSessionWithUserBySessionId(sessionId);
     }
 
-    public async Task RemoveSessions(List<Session?> sessions)
+    public async Task RemoveSessions(List<SessionEntity?> sessions)
     {
                 
         foreach (var session in sessions)
@@ -45,7 +45,7 @@ public class SessionService:Service<Session>,ISessionService
         }
     }
 
-    public SessionService(IGenericRepository<Session?> repository, ISessionRepository sessionRepository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
+    public SessionService(IGenericRepository<SessionEntity?> repository, ISessionRepository sessionRepository, IUnitOfWork unitOfWork) : base(repository, unitOfWork)
     {
         _sessionRepository = sessionRepository;
         _unitOfWork = unitOfWork;

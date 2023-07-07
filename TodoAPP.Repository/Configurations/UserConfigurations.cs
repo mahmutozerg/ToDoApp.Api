@@ -5,15 +5,15 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Repository.Configurations;
 
-public class UserConfigurations:IEntityTypeConfiguration<User>
+public class UserConfigurations:IEntityTypeConfiguration<UserEntity>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
-        builder.Property(u => u.Id).UseIdentityColumn();
+        builder.HasKey(u => u.Id);
         builder.Property(u => u.Email).IsRequired();
         builder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
         
-        builder.HasMany(u => u.ToDos).WithOne(u=> u.User).HasForeignKey(x => x.UserId);
+        builder.HasMany(u => u.ToDos).WithOne(u=> u.UserEntity).HasForeignKey(x => x.UserId);
        
         builder.ToTable("Users");
     }

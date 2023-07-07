@@ -28,9 +28,9 @@ public class UserController:CustomBaseController
         var sessions = await _sessionService.Where(s=> s.UserId == userResponseDto.Data.Id).ToListAsync();
         await _sessionService.RemoveSessions(sessions);
         
-        var UserRemovalResult =await _userService.RemoveAsync(userResponseDto.Data);
+        var userRemovalResult =await _userService.RemoveAsync(userResponseDto.Data);
 
-        return CreateActionResult(UserRemovalResult);
+        return CreateActionResult(userRemovalResult);
     }
 
     [HttpPost("[action]/{sessionId}")]

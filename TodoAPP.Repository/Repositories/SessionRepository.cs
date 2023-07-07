@@ -4,27 +4,27 @@ using TodoAPP.Core.Repositories;
 
 namespace TodoAPP.Repository.Repositories;
 
-public class SessionRepository : GenericRepository<Session>,ISessionRepository
+public class SessionRepository : GenericRepository<SessionEntity>,ISessionRepository
 {
-    private readonly DbSet<Session> _dbSet;
+    private readonly DbSet<SessionEntity> _dbSet;
     
-    public void UpdateOnLogin(Session session)
+    public void UpdateOnLogin(SessionEntity sessionEntity)
     {
-        session.IsSessionActive = true;
-        session.LastLogin = DateTime.Now;
-        session.SessionGUID = Guid.NewGuid().ToString();
+        sessionEntity.IsSessionActive = true;
+        sessionEntity.LastLogin = DateTime.Now;
+        sessionEntity.SessionGUID = Guid.NewGuid().ToString();
     }
 
-    public async Task<Session?> GetSessionWithUserBySessionId(string sessionId)
+    public async Task<SessionEntity?> GetSessionWithUserBySessionId(string sessionId)
     {
-        return await _dbSet.Include(s => s.User).
+        return await _dbSet.Include(s => s.UserEntity).
                 FirstOrDefaultAsync(s => s.SessionGUID == sessionId && s.IsSessionActive);
     }
     
 
     public SessionRepository(AppDbContext context) : base(context)
     {
-        _dbSet = context.Set<Session>();
+        _dbSet = context.Set<SessionEntity>();
 
     }
 }

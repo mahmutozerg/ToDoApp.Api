@@ -2,8 +2,8 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Core.Repositories;
 
-public interface IUserRepository:IGenericRepository<User>
+public interface IUserRepository:IGenericRepository<UserEntity>
 {
-    Task<User?> GetUserInfoByEmail(string email);
+    Task<UserEntity?> GetUserInfoByEmail(string email);
     
 }

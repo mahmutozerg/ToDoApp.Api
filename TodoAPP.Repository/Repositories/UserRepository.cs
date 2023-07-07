@@ -4,25 +4,25 @@ using TodoAPP.Core.Repositories;
 
 namespace TodoAPP.Repository.Repositories;
 
-public class UserRepository:GenericRepository<User>,IUserRepository
+public class UserRepository:GenericRepository<UserEntity>,IUserRepository
 {
-    private readonly DbSet<User> _dbSet;
+    private readonly DbSet<UserEntity> _dbSet;
 
     public UserRepository(AppDbContext context) : base(context)
     {
-        _dbSet = context.Set<User>();
+        _dbSet = context.Set<UserEntity>();
     }
 
-    public async Task<User?> GetUserInfoByEmail(string email)
+    public async Task<UserEntity?> GetUserInfoByEmail(string email)
     {
         var user = await _dbSet.Where(u=>u.Email==email&& !u.IsDeleted).FirstOrDefaultAsync();
         return user;
     }
 
-    public new  void  Remove(User user)
+    public new  void  Remove(UserEntity userEntity)
     {
-        user.IsDeleted = true;
-        Update(user);
+        userEntity.IsDeleted = true;
+        Update(userEntity);
         
     }
 }

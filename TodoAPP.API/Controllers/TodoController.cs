@@ -42,7 +42,7 @@ public class TodoController : CustomBaseController
     }
 
     [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> UpdateToDo(string sessionId,TodoDto todoDto,int id)
+    public async Task<IActionResult> UpdateToDo(string sessionId,TodoDto todoDto,string id)
     {
    
         var updatedTodo = await _toDoService.Update(todoDto,id,sessionId);
@@ -53,7 +53,7 @@ public class TodoController : CustomBaseController
     }
 
     [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> UpdateToDoStatusById(string sessionId,int id)
+    public async Task<IActionResult> UpdateToDoStatusById(string sessionId,string id)
     {
         var updatedTodo = await _toDoService.UpdateToDoStatusById(sessionId,id);
 
@@ -72,7 +72,7 @@ public class TodoController : CustomBaseController
 
     }
     [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> Remove (string sessionId, int id)
+    public async Task<IActionResult> Remove (string sessionId, string id)
     {
 
         var todo = await _toDoService.Remove(sessionId, id);

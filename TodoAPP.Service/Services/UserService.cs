@@ -7,68 +7,68 @@ using TodoAPP.Core.UnitOfWorks;
 
 namespace TodoAPP.Service.Services;
 
-public class UserService:Service<User>,IUserService
+public class UserService:Service<UserEntity>,IUserService
 {
     
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserRepository _userRepository;
     private readonly IAuthenticationService _authenticationService;
-    public UserService(IGenericRepository<User?> repository, IUnitOfWork unitOfWork, IUserRepository userRepository, IAuthenticationService authenticationService) : base(repository, unitOfWork)
+    public UserService(IGenericRepository<UserEntity?> repository, IUnitOfWork unitOfWork, IUserRepository userRepository, IAuthenticationService authenticationService) : base(repository, unitOfWork)
     {
         _unitOfWork = unitOfWork;
         _userRepository = userRepository;
         _authenticationService = authenticationService;
     }
     
-    public async Task<CustomResponseDto<User>> GetUserInfoByEmail(string email)
+    public async Task<CustomResponseDto<UserEntity>> GetUserInfoByEmail(string email)
     {
         var user =  await _userRepository.GetUserInfoByEmail(email);
         
         if (user == null)
-            return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound,404);
+            return CustomResponseDto<UserEntity>.Fail(ResponseMessages.UserNotFound,404);
         
-        return CustomResponseDto<User>.Success(user,200);
+        return CustomResponseDto<UserEntity>.Success(user,200);
 
     }
     
-    public async Task<CustomResponseDto<User>> RemoveAsync(User user)
+    public async Task<CustomResponseDto<UserEntity>> RemoveAsync(UserEntity userEntity)
     {
         // Sets user isDeleted property to true
  
-        user.IsDeleted = true;
-        await Update(user);
-        return CustomResponseDto<User>.Success(user, 204);
+        userEntity.IsDeleted = true;
+        await Update(userEntity);
+        return CustomResponseDto<UserEntity>.Success(userEntity, 204);
     }
 
-    public async Task<CustomResponseDto<User>> UpdateUser(UserUpdateDto userUpdateDto, Session? session)
+    public async Task<CustomResponseDto<UserEntity>> UpdateUser(UserUpdateDto userUpdateDto, SessionEntity? session)
     {
 
         if (session == null)
-            return CustomResponseDto<User>.Fail(ResponseMessages.SessionNotFound,404);
+            return CustomResponseDto<UserEntity>.Fail(ResponseMessages.SessionNotFound,404);
 
         if (userUpdateDto.Password != null)
         {
             
-            var userUpdateDtoPasswordHash = _authenticationService.CalculateHash(userUpdateDto.Password, session.User.PasswordSalt);
+            var userUpdateDtoPasswordHash = _authenticationService.CalculateHash(userUpdateDto.Password, session.UserEntity.PasswordSalt);
 
-            if (session.User.PasswordHash != userUpdateDtoPasswordHash)
+            if (session.UserEntity.PasswordHash != userUpdateDtoPasswordHash)
             {
-                session.User.PasswordSalt = PasswordHasher.GenerateSalt();
-                session.User.PasswordHash = _authenticationService.CalculateHash(userUpdateDto.Password, session.User.PasswordSalt);
+                session.UserEntity.PasswordSalt = PasswordHasher.GenerateSalt();
+                session.UserEntity.PasswordHash = _authenticationService.CalculateHash(userUpdateDto.Password, session.UserEntity.PasswordSalt);
 
             }
         }
         
         if (userUpdateDto.UserName != null)
-            session.User.UserName = userUpdateDto.UserName != session.User.UserName ? userUpdateDto.UserName : session.User.UserName;
+            session.UserEntity.UserName = userUpdateDto.UserName != session.UserEntity.UserName ? userUpdateDto.UserName : session.UserEntity.UserName;
 
         if (userUpdateDto.Email != null)
-            session.User.Email = userUpdateDto.Email != session.User.Email ? userUpdateDto.Email : session.User.Email;
+            session.UserEntity.Email = userUpdateDto.Email != session.UserEntity.Email ? userUpdateDto.Email : session.UserEntity.Email;
 
 
         
-        await Update(session.User);
+        await Update(session.UserEntity);
         
-        return CustomResponseDto<User>.Success(session.User ,200 );    
+        return CustomResponseDto<UserEntity>.Success(session.UserEntity ,200 );    
     }
 }

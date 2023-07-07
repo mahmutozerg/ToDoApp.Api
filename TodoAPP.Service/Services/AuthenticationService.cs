@@ -38,13 +38,13 @@ public class AuthenticationService:IAuthenticationService
         var userExistErrorMessage = await CheckUserExist(userDto);
         if (string.IsNullOrEmpty(userExistErrorMessage))
         {
-            var newUser = new User()
+            var newUser = new UserEntity()
             {
                 UserName = userDto.UserName,
                 Email = userDto.Email,
                 PasswordSalt = PasswordHasher.GenerateSalt(),
                 IsDeleted = false,
-                ToDos = new List<ToDo>()
+                ToDos = new List<ToDoEntity>()
 
             };
             newUser.PasswordHash= CalculateHash(userDto.Password, newUser.PasswordSalt);
@@ -58,7 +58,7 @@ public class AuthenticationService:IAuthenticationService
         return string.Empty;
     }
 
-    public async Task<Session?> Login(UserDto userDto)
+    public async Task<SessionEntity?> Login(UserDto userDto)
     {
 
         var user = await _userRepository.GetUserInfoByEmail(userDto.Email);
@@ -89,7 +89,7 @@ public class AuthenticationService:IAuthenticationService
         return userExistErrorMessage;
     }
 
-    public async Task<Session> Logout(SessionGuiddto sessionDto)
+    public async Task<SessionEntity> Logout(SessionGuiddto sessionDto)
     {
         
         var session = await _sessionService.Where(s => s!.SessionGUID == sessionDto.SessionGUID && s.IsSessionActive).FirstOrDefaultAsync();

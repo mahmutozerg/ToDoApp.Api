@@ -4,16 +4,16 @@ using TodoAPP.Core.Repositories;
 
 namespace TodoAPP.Repository.Repositories;
 
-public class ToDoRepository:GenericRepository<ToDo>,IToDoRepository
+public class ToDoRepository:GenericRepository<ToDoEntity>,IToDoRepository
 {
-    private readonly DbSet<ToDo> _dbSet;
+    private readonly DbSet<ToDoEntity> _dbSet;
 
     public ToDoRepository(AppDbContext context) : base(context)
     {
-        _dbSet = context.Set<ToDo>();
+        _dbSet = context.Set<ToDoEntity>();
     }
 
-    public async Task<List<ToDo>?> GetBylistNameAsync(string listName, int userId)
+    public async Task<List<ToDoEntity>?> GetBylistNameAsync(string listName, string userId)
     {
         var filteredRelatedUserToDosList =
            await _dbSet.Where(t => t.ListName == listName && t.UserId == userId && !t.IsDeleted)

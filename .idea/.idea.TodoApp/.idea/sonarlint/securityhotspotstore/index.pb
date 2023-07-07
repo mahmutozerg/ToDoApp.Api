@@ -9,8 +9,6 @@ p
 @TodoAPP.Service/obj/Debug/net7.0/TodoAPP.Service.AssemblyInfo.cs,3\9\394438bfe43037e2dd413c121145dd79b07c17a7
 r
 BTodoAPP.Service/obj/Debug/net7.0/TodoAPP.Service.GlobalUsings.g.cs,5\d\5d4feb3e1d1982a1d2a26cc0bf1ec946fc0c8227
-L
-TodoAPP.API/appsettings.json,a\d\ad3a9135182a4cb1e4b3c46dfc2ead5be215a4bb
 X
 (TodoAPP.API/appsettings.Development.json,3\3\33046a16c29533be3b14aa371accb3b98a4486ff
 ‚

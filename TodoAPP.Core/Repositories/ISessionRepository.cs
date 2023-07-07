@@ -2,9 +2,9 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Core.Repositories;
 
-public interface ISessionRepository:IGenericRepository<Session>
+public interface ISessionRepository:IGenericRepository<SessionEntity>
 {
-    public void UpdateOnLogin(Session session);
-    public Task<Session?> GetSessionWithUserBySessionId(string sessionId);
+    public void UpdateOnLogin(SessionEntity sessionEntity);
+    public Task<SessionEntity?> GetSessionWithUserBySessionId(string sessionId);
 
 }

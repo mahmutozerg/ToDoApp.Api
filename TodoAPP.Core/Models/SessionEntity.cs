@@ -3,15 +3,15 @@ using System.Text.Json.Serialization;
 
 namespace TodoAPP.Core.Models;
 
-public  class Session
+public  class SessionEntity:BaseEntity
 {
-    public int Id { get; set; }
+    public string Id { get; set; } = null!;
+
     public DateTime LastLogin { get; set; }
     public bool IsSessionActive { get; set; }
     public string SessionGUID { get; set; }
-    public DateTime CreatedAt { get; set; }
     public DateTime? EndedAt { get; set; }
     
-    public User User;
-    public int UserId;
+    public UserEntity UserEntity;
+    public string UserId;
 }

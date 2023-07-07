@@ -2,11 +2,11 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Core.Services;
 
-public interface ISessionService:IService<Session>
+public interface ISessionService:IService<SessionEntity>
 {
-     Task<Session> CreateSession( int id);
-     void UpdateOnLogin(Session session);
-     Task<Session?> GetSessionWithUserBySessionIdAsync(string sessionId);
-     Task RemoveSessions(List<Session?> sessions);
+     Task<SessionEntity> CreateSession( string id);
+     void UpdateOnLogin(SessionEntity sessionEntity);
+     Task<SessionEntity?> GetSessionWithUserBySessionIdAsync(string sessionId);
+     Task RemoveSessions(List<SessionEntity?> sessions);
 
 }

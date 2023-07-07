@@ -2,9 +2,9 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Core.Repositories;
 
-public interface IToDoRepository:IGenericRepository<ToDo>
+public interface IToDoRepository:IGenericRepository<ToDoEntity>
 {
-     Task<List<ToDo>?> GetBylistNameAsync(string listName, int userId);
+     Task<List<ToDoEntity>?> GetBylistNameAsync(string listName, string userId);
 
 
 }

@@ -3,13 +3,13 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Core.Services;
 
-public interface IUserService:IService<User>
+public interface IUserService:IService<UserEntity>
 {
-    Task<CustomResponseDto<User>> GetUserInfoByEmail(string email);
+    Task<CustomResponseDto<UserEntity>> GetUserInfoByEmail(string email);
     
-    Task<CustomResponseDto<User>> RemoveAsync(User user);
+    Task<CustomResponseDto<UserEntity>> RemoveAsync(UserEntity userEntity);
     
-    Task<CustomResponseDto<User>> UpdateUser(UserUpdateDto userUpdateDto, Session? session);
+    Task<CustomResponseDto<UserEntity>> UpdateUser(UserUpdateDto userUpdateDto, SessionEntity? session);
     
 
 }

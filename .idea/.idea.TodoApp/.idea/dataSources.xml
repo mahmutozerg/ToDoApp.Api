@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="TodoAppDb" uuid="845344cd-ceef-4db4-94eb-de75f35fbe09">
+    <data-source source="LOCAL" name="Microsoft SQL Server LocalDB (JetBrains)" uuid="44fa4ca9-0c95-4eb8-a8b7-9bf1a5030adf">
       <driver-ref>sqlserver.localdb.jb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-      <jdbc-url>Server=(localdb)\.\SQLEXPRESS;Initial Catalog=TodoAPPDb;Integrated Security=True;Encrypt=False;Database=TodoAppDb</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="Microsoft SQL Server LocalDB (JetBrains)" uuid="6ee43cd4-01e0-4ccb-9566-ae117eb430c3">
-      <driver-ref>sqlserver.localdb.jb</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-      <jdbc-url>Server=ISTN35258\SQLEXPRESS;Database=TodoAPPDb;</jdbc-url>
+      <jdbc-url>Server=ISTN11712\SQLEXPRESS;Database=TodoAppDb;Trusted_Connection=True;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -3,11 +3,10 @@ using System.Text.Json.Serialization;
 
 namespace TodoAPP.Core.Models;
 
-public class User
+public class UserEntity:BaseEntity
 {
-    
-    public int Id { get; set; }
-   
+    public string Id { get; set; } = null!;
+
     public string? UserName { get; set; }
     [EmailAddress]
     public string? Email { get; set; }
@@ -16,6 +15,6 @@ public class User
     [JsonIgnore]
     public bool IsDeleted { get; set; }
     [JsonIgnore]
-    public List<ToDo> ToDos { get; set; } = new List<ToDo>();
+    public List<ToDoEntity> ToDos { get; set; } = new List<ToDoEntity>();
 
 }
