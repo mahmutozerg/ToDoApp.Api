@@ -5,11 +5,11 @@ namespace TodoAPP.Core.Services;
 
 public interface IUserService:IService<User>
 {
-    Task<User?> GetUserInfoByEmail(string email);
+    Task<CustomResponseDto<User>> GetUserInfoByEmail(string email);
     
-    Task<User?> RemoveAsync(User user);
+    Task<CustomResponseDto<User>> RemoveAsync(User user);
     
-    Task<string> UpdateUser(UserUpdateDto userUpdateDto, Session? session);
+    Task<CustomResponseDto<User>> UpdateUser(UserUpdateDto userUpdateDto, Session? session);
     
 
 }

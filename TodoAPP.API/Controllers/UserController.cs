@@ -20,17 +20,17 @@ public class UserController:CustomBaseController
     [HttpDelete("[action]")]
     public async Task<IActionResult> Remove (UserLoginDto userLoginDto)
     {
-        var user = await _userService.GetUserInfoByEmail(userLoginDto.Email);
+        var userResponseDto = await _userService.GetUserInfoByEmail(userLoginDto.Email);
 
-        if (user == null)
-            return CreateActionResult(CustomResponseNoDataDto.Fail(404,ResponseMessages.UserNotFound));
-
-        var sessions = await _sessionService.Where(s=> s.UserId == user.Id).ToListAsync();
+        if (userResponseDto.StatusCode == 404)
+            return CreateActionResult(userResponseDto);
+        
+        var sessions = await _sessionService.Where(s=> s.UserId == userResponseDto.Data.Id).ToListAsync();
         await _sessionService.RemoveSessions(sessions);
         
-        await _userService.RemoveAsync(user);
+        var UserRemovalResult =await _userService.RemoveAsync(userResponseDto.Data);
 
-        return CreateActionResult(CustomResponseNoDataDto.Success(200));
+        return CreateActionResult(UserRemovalResult);
     }
 
     [HttpPost("[action]/{sessionId}")]
@@ -39,12 +39,8 @@ public class UserController:CustomBaseController
         var sessionWithUser = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
 
         var updateResult = await _userService.UpdateUser(userDto,sessionWithUser);
-
-        if (!string.IsNullOrEmpty(updateResult))
-            return CreateActionResult(CustomResponseNoDataDto.Fail(StatusCodes.Status404NotFound, ResponseMessages.UserNotFound));
         
-        return  CreateActionResult(CustomResponseNoDataDto.Success(StatusCodes.Status200OK)); 
-
+        return  CreateActionResult(updateResult);
     }
   
 

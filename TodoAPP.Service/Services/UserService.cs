@@ -20,25 +20,31 @@ public class UserService:Service<User>,IUserService
         _authenticationService = authenticationService;
     }
     
-    public async Task<User?> GetUserInfoByEmail(string email)
+    public async Task<CustomResponseDto<User>> GetUserInfoByEmail(string email)
     {
-        return await _userRepository.GetUserInfoByEmail(email);
+        var user =  await _userRepository.GetUserInfoByEmail(email);
+        
+        if (user == null)
+            return CustomResponseDto<User>.Fail(ResponseMessages.UserNotFound,404);
+        
+        return CustomResponseDto<User>.Success(user,200);
+
     }
     
-    public async Task<User?> RemoveAsync(User user)
+    public async Task<CustomResponseDto<User>> RemoveAsync(User user)
     {
         // Sets user isDeleted property to true
  
         user.IsDeleted = true;
         await Update(user);
-        return user;    
+        return CustomResponseDto<User>.Success(user, 204);
     }
 
-    public async Task<string> UpdateUser(UserUpdateDto userUpdateDto, Session? session)
+    public async Task<CustomResponseDto<User>> UpdateUser(UserUpdateDto userUpdateDto, Session? session)
     {
 
         if (session == null)
-            return ResponseMessages.SessionNotFound;
+            return CustomResponseDto<User>.Fail(ResponseMessages.SessionNotFound,404);
 
         if (userUpdateDto.Password != null)
         {
@@ -63,6 +69,6 @@ public class UserService:Service<User>,IUserService
         
         await Update(session.User);
         
-        return string.Empty;    
+        return CustomResponseDto<User>.Success(session.User ,200 );    
     }
 }

@@ -18,13 +18,13 @@ public class CustomResponseDto<T>
     {
         return new CustomResponseDto<T> {StatusCode = statusCode,Errors = new List<string>()};
     }
-    public static CustomResponseDto<T> Fail(int statusCode,List<string> errors)
+    public static CustomResponseDto<T> Fail(List<string> errors,int statusCode)
     {
         return new CustomResponseDto<T> {Errors = errors, StatusCode = statusCode};
     }
     
     
-    public static CustomResponseDto<T> Fail(int statusCode,string error)
+    public static CustomResponseDto<T> Fail(string error,int statusCode)
     {
         return new CustomResponseDto<T> {Errors = new List<string>{error}, StatusCode = statusCode};
     }

@@ -22,10 +22,10 @@ public class AuthenticationController:CustomBaseController
         if (string.IsNullOrEmpty(registeredSession))
             return CreateActionResult(CustomResponseNoDataDto.Fail(404, ResponseMessages.UserAlreadyExist));
         
-         return CreateActionResult(CustomResponseDto<SessionGuiddto>.Success(StatusCodes.Status200OK, new SessionGuiddto()
+         return CreateActionResult(CustomResponseDto<SessionGuiddto>.Success( new SessionGuiddto()
         {
             SessionGUID = registeredSession
-        }));
+        },StatusCodes.Status200OK));
         
     }
     [HttpPost("[action]")]
@@ -44,10 +44,10 @@ public class AuthenticationController:CustomBaseController
             return  CreateActionResult(CustomResponseNoDataDto.Fail(404, ResponseMessages.UserNotFound));
         
         
-        return CreateActionResult(CustomResponseDto<SessionGuiddto>.Success(StatusCodes.Status200OK, new SessionGuiddto()
+        return CreateActionResult(CustomResponseDto<SessionGuiddto>.Success( new SessionGuiddto()
         {
             SessionGUID = session.SessionGUID
-        }));
+        },StatusCodes.Status200OK));
     }
     
     [HttpPost("[action]")]
