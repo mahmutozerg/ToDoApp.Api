@@ -5,7 +5,7 @@ namespace TodoAPP.Core.Mappers;
 
 public static class TodoMapper
 {
-       public  static List<ToDoResponseDto> ToResponseDtoList(List<ToDo> toDos)
+       public  static List<ToDoResponseDto> ToResponseDtoList(List<ToDo?> toDos)
         {
             var toDoResponseDtos = new List<ToDoResponseDto>();
             foreach (var toDo in toDos)
@@ -21,4 +21,18 @@ public static class TodoMapper
             }
             return toDoResponseDtos;
         }
+
+       public static ToDoResponseDto ToResponseDto(ToDo? toDo)
+       {
+           var dto = (new ToDoResponseDto()
+           {
+               Id = toDo.Id,
+               Title = toDo.Title,
+               TodoContext = toDo.TodoContext,
+               DueTime = toDo.DueTime,
+               IsDone = toDo.IsDone
+           });
+           return dto;
+       }
+
 }

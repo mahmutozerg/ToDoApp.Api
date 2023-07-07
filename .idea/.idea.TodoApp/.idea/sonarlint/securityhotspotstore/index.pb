@@ -23,8 +23,6 @@ j
 :TodoAPP.API/obj/Debug/net7.0/TodoAPP.API.GlobalUsings.g.cs,7\a\7a62ee7603279e27948c25cc2d8346ef89cabfd1
 Š
 ZTodoAPP.Service/obj/Debug/net7.0/TodoAPP.Service.GeneratedMSBuildEditorConfig.editorconfig,d\c\dcdb43d5bb247cfe4990da0c114f5076e707b262
-I
-TodoAPP.Service/Class1.cs,d\2\d2e62e5c49c085b3d93e38288362b7c1335c74b3
 x
 HTodoAPP.Repository/obj/Debug/net7.0/TodoAPP.Repository.GlobalUsings.g.cs,d\4\d40b0dc021bc1412b5db9243cb9f89153a9a46ae
 v
@@ -45,5 +43,3 @@ F
 ,TodoAPP.Repository/UnitOfWorks/UnitOfWork.cs,e\6\e63809b2787f81f9db8737d24f3e4725b5927efa
 \
 ,TodoAPP.Repository/TodoAPP.Repository.csproj,b\0\b0aeb85f7d4b45538bdc4d7a4fc3894362f18b37
-j
-:TodoAPP.Repository/Migrations/AppDbContextModelSnapshot.cs,e\2\e29daaa772e3e2cd03ff2a68355ff0f262075ef7

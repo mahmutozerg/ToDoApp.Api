@@ -3737,11 +3737,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+      "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj",
       "projectName": "TodoAPP.API",
-      "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+      "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj",
       "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\obj\\",
+      "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3750,14 +3750,15 @@
         "net7.0"
       ],
       "sources": {
+        "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
-              "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj"
+            "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+              "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj"
             }
           }
         }
@@ -3818,7 +3819,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -9,7 +9,7 @@ public class CustomResponseDto<T>
     public List<string>? Errors { get; set; }
 
 
-    public static CustomResponseDto<T> Success(int statusCode,T data)
+    public static CustomResponseDto<T> Success(T data,int statusCode)
     {
         return new CustomResponseDto<T> {Data = data, StatusCode = statusCode,Errors = new List<string>()};
     }

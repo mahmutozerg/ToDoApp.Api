@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj": {}
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj": {
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj",
         "projectName": "TodoAPP.API",
-        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj",
         "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.API\\obj\\",
+        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -20,14 +20,15 @@
           "net7.0"
         ],
         "sources": {
+          "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
-                "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj"
+              "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+                "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj"
               }
             }
           }
@@ -88,18 +89,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
         "projectName": "TodoAPP.Core",
-        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
         "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\obj\\",
+        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -141,18 +142,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
         "projectName": "TodoAPP.Repository",
-        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
         "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\obj\\",
+        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -167,8 +168,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
-                "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj"
+              "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+                "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj"
               }
             }
           }
@@ -214,18 +215,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj",
+        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj",
         "projectName": "TodoAPP.Service",
-        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\TodoAPP.Service.csproj",
+        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj",
         "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Service\\obj\\",
+        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -240,8 +241,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
-                "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj"
+              "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
+                "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj"
               }
             }
           }
@@ -281,7 +282,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

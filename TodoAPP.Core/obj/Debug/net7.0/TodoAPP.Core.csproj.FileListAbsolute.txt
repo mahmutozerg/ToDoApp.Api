@@ -10,3 +10,15 @@ C:\Users\10129257\RiderProjects\TodoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Co
 C:\Users\10129257\RiderProjects\TodoApp\TodoAPP.Core\obj\Debug\net7.0\refint\TodoAPP.Core.dll
 C:\Users\10129257\RiderProjects\TodoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.pdb
 C:\Users\10129257\RiderProjects\TodoApp\TodoAPP.Core\obj\Debug\net7.0\ref\TodoAPP.Core.dll
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\bin\Debug\net7.0\TodoAPP.Core.deps.json
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\bin\Debug\net7.0\TodoAPP.Core.dll
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\bin\Debug\net7.0\TodoAPP.Core.pdb
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.csproj.AssemblyReference.cache
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.AssemblyInfoInputs.cache
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.AssemblyInfo.cs
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.csproj.CoreCompileInputs.cache
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.dll
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\refint\TodoAPP.Core.dll
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.pdb
+C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\ref\TodoAPP.Core.dll

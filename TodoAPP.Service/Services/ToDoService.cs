@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TodoAPP.Core;
 using TodoAPP.Core.DTOs;
+using TodoAPP.Core.Mappers;
 using TodoAPP.Core.Models;
 using TodoAPP.Core.Repositories;
 using TodoAPP.Core.Services;
@@ -23,18 +24,18 @@ public class ToDoService:Service<ToDo>,IToDoService
         _userService = userService;
     }
 
-    public async Task<List<ToDo?>?> GetAllAsync(string sessionId)
+    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetAllAsync(string sessionId)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session != null)
-        {
-            var todos = await _toDoRepository.Where(t=> t!.UserId == session.UserId && !t.IsDeleted).AsNoTracking().ToListAsync();
-            return todos;
-        }
         
-        throw new Exception(ResponseMessages.SessionNotFound);
+        if (session == null)
+            throw new Exception(ResponseMessages.SessionNotFound);
+
+        var todos = await _toDoRepository.Where(t=> t!.UserId == session.UserId && !t.IsDeleted).AsNoTracking().ToListAsync();
+        
+        return CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(todos),200);
     }
-    public async Task<List<ToDo>?> GetBylistNameAsync(string listName, string sessionId)
+    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetBylistNameAsync(string listName, string sessionId)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
@@ -43,10 +44,10 @@ public class ToDoService:Service<ToDo>,IToDoService
         }
         
         var todos =  await _toDoRepository.GetBylistNameAsync(listName,session.UserId);
-        return todos;
+        return CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(todos),200);
     }
     
-    public async Task<List<ToDo?>?> GetCompletedToDos(string sessionId)
+    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetCompletedToDos(string sessionId)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
@@ -54,12 +55,11 @@ public class ToDoService:Service<ToDo>,IToDoService
             throw new Exception(ResponseMessages.SessionNotFound);
         }
 
-        var completedToDos = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.IsDone &&!t.IsDeleted).ToListAsync();
-        
-        
-        return completedToDos;
+        var completedToDo = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.IsDone &&!t.IsDeleted).ToListAsync();
+
+        return  CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(completedToDo),200);
     }
-    public async Task<ToDo?> Update(TodoDto todoDto, int id, string sessionId)
+    public async Task<CustomResponseDto<ToDoResponseDto>> Update(TodoDto todoDto, int id, string sessionId)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
@@ -76,12 +76,12 @@ public class ToDoService:Service<ToDo>,IToDoService
             toDo.ListName = todoDto.ListName == string.Empty ? toDo.ListName : todoDto.ListName;
             toDo.DueTime = todoDto.DueTime == toDo.DueTime ? toDo.DueTime : todoDto.DueTime;
             await Update(toDo);
-            return toDo;
+            return  CustomResponseDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDto(toDo),200);
 
         }
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
     }
-    public async Task<ToDo?> UpdateToDoStatusById(string sessionId,int id)
+    public async Task<CustomResponseDto<ToDoResponseDto>> UpdateToDoStatusById(string sessionId, int id)
     {
         // get the todoo by id and update its status
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
@@ -93,15 +93,14 @@ public class ToDoService:Service<ToDo>,IToDoService
         var toDo = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.Id == id && !t.IsDeleted)
             .FirstOrDefaultAsync();
         
-        if (toDo != null)
-        {
-            toDo.IsDone = !toDo.IsDone;
-            await Update(toDo);
-            return toDo;
-        }
-        throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
+        if (toDo == null)
+            throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
+        
+        toDo.IsDone = !toDo.IsDone;
+        await Update(toDo);
+        return  CustomResponseDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDto(toDo),200);
     }
-    public async Task<ToDo?> CreateToDo(TodoDto todoDto, string sessionId)
+    public async Task<CustomResponseDto<ToDoResponseDto>> CreateToDo(TodoDto todoDto, string sessionId)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
@@ -125,10 +124,10 @@ public class ToDoService:Service<ToDo>,IToDoService
 
         await _userService.Update(session.User);
         await  _unitOfWork.CommitAsync();
-        return toDo;
+        return  CustomResponseDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDto(toDo),200);
     }
     
-    public   async Task<ToDo?> Remove(string sessionId,int id)
+    public   async Task<CustomResponseNoDataDto> Remove(string sessionId, int id)
     {
         var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         if (session == null)
@@ -142,7 +141,7 @@ public class ToDoService:Service<ToDo>,IToDoService
         {
             todo.IsDeleted = true;
             await Update(todo);
-            return todo;
+            return CustomResponseNoDataDto.Success(204);
         }
 
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);

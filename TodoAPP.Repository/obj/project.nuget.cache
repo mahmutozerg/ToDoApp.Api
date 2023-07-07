@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SnKtJ8LB/laszxn0kHnHfYkjel6Y7mUwggitogi60FYfFmttHz8Uv8ibs/Z0YKJFsGRi8ZQWgCbwGcByCUEj2Q==",
+  "dgSpecHash": "nG2+NXffgzp2pV8k0vNq0V9mipHlLoZthDrKm9Tbd/rodhFpTeQZOGzMyMxs+1Gmkg154yrig5lzfw0AriM+YA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+  "projectFilePath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\10129257\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\10129257\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

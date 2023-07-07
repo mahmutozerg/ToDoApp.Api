@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {}
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
         "projectName": "TodoAPP.Core",
-        "projectPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
         "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\RiderProjects\\TodoApp\\TodoAPP.Core\\obj\\",
+        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\10129257\\.dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }
