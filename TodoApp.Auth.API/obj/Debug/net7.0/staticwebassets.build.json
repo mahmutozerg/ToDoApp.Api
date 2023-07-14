@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XaB92MIZhvJRFQpvD6rjjvWmrMG3xOhI3XGJACbFG0E=",
+  "Source": "TodoApp.Auth.API",
+  "BasePath": "_content/TodoApp.Auth.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

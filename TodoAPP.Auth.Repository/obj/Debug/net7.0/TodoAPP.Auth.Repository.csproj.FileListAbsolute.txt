@@ -1,0 +1,17 @@
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\bin\Debug\net7.0\TodoAPP.Auth.Repository.deps.json
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\bin\Debug\net7.0\TodoAPP.Auth.Repository.runtimeconfig.json
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\bin\Debug\net7.0\TodoAPP.Auth.Repository.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\bin\Debug\net7.0\TodoAPP.Auth.Repository.pdb
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\bin\Debug\net7.0\TodoAPP.Auth.Core.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\bin\Debug\net7.0\TodoAPP.Auth.Core.pdb
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.csproj.AssemblyReference.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.AssemblyInfoInputs.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.AssemblyInfo.cs
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.csproj.CoreCompileInputs.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.csproj.CopyComplete
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\refint\TodoAPP.Auth.Repository.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.pdb
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\TodoAPP.Auth.Repository.genruntimeconfig.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Auth.Repository\obj\Debug\net7.0\ref\TodoAPP.Auth.Repository.dll

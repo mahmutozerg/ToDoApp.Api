@@ -22,3 +22,15 @@ C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\Tod
 C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\refint\TodoAPP.Core.dll
 C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.pdb
 C:\Users\10129257\Documents\GitHub\ToDoApp.Api\TodoAPP.Core\obj\Debug\net7.0\ref\TodoAPP.Core.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\bin\Debug\net7.0\TodoAPP.Core.deps.json
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\bin\Debug\net7.0\TodoAPP.Core.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\bin\Debug\net7.0\TodoAPP.Core.pdb
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.csproj.AssemblyReference.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.AssemblyInfoInputs.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.AssemblyInfo.cs
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.csproj.CoreCompileInputs.cache
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\refint\TodoAPP.Core.dll
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\TodoAPP.Core.pdb
+E:\Projects\MyProjects\ToDoApp\TodoAPP.Core\obj\Debug\net7.0\ref\TodoAPP.Core.dll

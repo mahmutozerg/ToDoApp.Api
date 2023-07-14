@@ -5,6 +5,7 @@
       <map>
         <entry key="Common:b42007ff-1fe0-481b-bcfb-12c415cad808:dbContext" value="TodoAPP.Repository.AppDbContext" />
         <entry key="Common:buildConfiguration" value="Debug" />
+        <entry key="Common:ddf6e323-84a0-4628-a9df-5546d38aa6c2:dbContext" value="TodoAPP.Auth.Repository.AppDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
         <entry key="Common:useDefaultConnection" value="true" />

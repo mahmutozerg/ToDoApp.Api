@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TodoApp.Auth.API.props" />
+</Project>

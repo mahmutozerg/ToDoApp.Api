@@ -2,11 +2,11 @@ using System.Linq.Expressions;
 
 namespace TodoAPP.Core.Repositories;
 
-public interface IGenericRepository<T> where T:class?
+public interface IGenericRepository<TEntity> where TEntity:class?
 {
-    IQueryable<T?> Where(Expression<Func<T?, bool>> expression);
-    Task<bool> AnyAsync(Expression<Func<T?, bool>> expression);
-    Task AddAsync(T? entity);
-    void Update(T? entity);
+    IQueryable<TEntity?> Where(Expression<Func<TEntity?, bool>> expression);
+    Task<bool> AnyAsync(Expression<Func<TEntity?, bool>> expression);
+    Task AddAsync(TEntity? entity);
+    void Update(TEntity? entity);
 
 }

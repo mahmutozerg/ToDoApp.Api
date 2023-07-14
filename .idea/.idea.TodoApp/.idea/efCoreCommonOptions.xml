@@ -4,11 +4,13 @@
     <option name="migrationsToStartupProjects">
       <map>
         <entry key="b42007ff-1fe0-481b-bcfb-12c415cad808" value="009b0ce1-4b71-453c-ad08-ffa5e7071df8" />
+        <entry key="ddf6e323-84a0-4628-a9df-5546d38aa6c2" value="826725fa-64fb-4f80-8023-2b6c2e9a4656" />
       </map>
     </option>
     <option name="startupToMigrationsProjects">
       <map>
         <entry key="009b0ce1-4b71-453c-ad08-ffa5e7071df8" value="b42007ff-1fe0-481b-bcfb-12c415cad808" />
+        <entry key="826725fa-64fb-4f80-8023-2b6c2e9a4656" value="ddf6e323-84a0-4628-a9df-5546d38aa6c2" />
       </map>
     </option>
   </component>

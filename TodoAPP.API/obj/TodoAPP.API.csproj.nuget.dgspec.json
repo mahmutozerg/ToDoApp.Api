@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj": {}
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.API\\TodoAPP.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj": {
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.API\\TodoAPP.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj",
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.API\\TodoAPP.API.csproj",
         "projectName": "TodoAPP.API",
-        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\TodoAPP.API.csproj",
-        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.API\\obj\\",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.API\\TodoAPP.API.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -27,8 +27,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj": {
-                "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj"
+              "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Service\\TodoAPP.Auth.Service.csproj": {
+                "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Service\\TodoAPP.Auth.Service.csproj"
+              },
+              "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+                "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Service\\TodoAPP.Service.csproj"
               }
             }
           }
@@ -54,6 +57,10 @@
             "EFCore": {
               "target": "Package",
               "version": "[1.1.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -93,17 +100,216 @@
         }
       }
     },
-    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Core\\TodoAPP.Auth.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
-        "projectName": "TodoAPP.Core",
-        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
-        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\obj\\",
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Core\\TodoAPP.Auth.Core.csproj",
+        "projectName": "TodoAPP.Auth.Core",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Core\\TodoAPP.Auth.Core.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Repository\\TodoAPP.Auth.Repository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Repository\\TodoAPP.Auth.Repository.csproj",
+        "projectName": "TodoAPP.Auth.Repository",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Repository\\TodoAPP.Auth.Repository.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Repository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Core\\TodoAPP.Auth.Core.csproj": {
+                "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Core\\TodoAPP.Auth.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Service\\TodoAPP.Auth.Service.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Service\\TodoAPP.Auth.Service.csproj",
+        "projectName": "TodoAPP.Auth.Service",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Service\\TodoAPP.Auth.Service.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Repository\\TodoAPP.Auth.Repository.csproj": {
+                "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Auth.Repository\\TodoAPP.Auth.Repository.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "projectName": "TodoAPP.Core",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -146,17 +352,17 @@
         }
       }
     },
-    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
         "projectName": "TodoAPP.Repository",
-        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
-        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\obj\\",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -168,8 +374,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj": {
-                "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj"
+              "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj": {
+                "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj"
               }
             }
           }
@@ -196,7 +402,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0-preview.4.23259.3, )"
+              "version": "[7.0.8, )"
             }
           },
           "imports": [
@@ -219,17 +425,17 @@
         }
       }
     },
-    "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj": {
+    "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Service\\TodoAPP.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj",
+        "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Service\\TodoAPP.Service.csproj",
         "projectName": "TodoAPP.Service",
-        "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\TodoAPP.Service.csproj",
-        "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Service\\obj\\",
+        "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Service\\TodoAPP.Service.csproj",
+        "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+        "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -241,8 +447,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
-                "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Repository\\TodoAPP.Repository.csproj"
+              "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj": {
+                "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Repository\\TodoAPP.Repository.csproj"
               }
             }
           }

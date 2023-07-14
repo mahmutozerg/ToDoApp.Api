@@ -1,9 +1,13 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TodoAPP.Core.DTOs;
 using TodoAPP.Core.Services;
 
 namespace TodoAPP.API.Controllers;
 
+
+[Authorize]
 public class TodoController : CustomBaseController
 {
 
@@ -14,68 +18,76 @@ public class TodoController : CustomBaseController
         _toDoService = toDoService;
     }
     
-    [HttpGet("[action]/{sessionId}")]
-    public async Task<IActionResult> GetAll(string sessionId)
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetAll()
     {
-        var todoResponseDtos= await _toDoService.GetAllAsync(sessionId);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var todoResponseDtos= await _toDoService.GetAllAsync(userId);
 
         return CreateActionResult(todoResponseDtos);
 
     }
 
-    [HttpGet("[action]/{sessionId}/{ListName}")]
-    public async Task<IActionResult> GetAllByListName(string sessionId, string ListName)
+    [HttpGet("[action]/{ListName}")]
+    public async Task<IActionResult> GetAllByListName( string ListName)
     {
-        var todoDtos = await _toDoService.GetBylistNameAsync(ListName,sessionId);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var todoDtos = await _toDoService.GetBylistNameAsync(ListName,userId);
         
         return CreateActionResult(todoDtos);
         
     }
     
-    [HttpGet("[action]/{sessionId}")]
-    public async Task<IActionResult> GetCompletedToDos(string sessionId)
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetCompletedToDos()
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        var todoDtos = await _toDoService.GetCompletedToDos(sessionId);
+        var todoDtos = await _toDoService.GetCompletedToDos(userId);
 
         return CreateActionResult(todoDtos);
     }
 
-    [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> UpdateToDo(string sessionId,TodoDto todoDto,string id)
+    [HttpPost("[action]/{id}")]
+    public async Task<IActionResult> UpdateToDo(TodoDto todoDto,string id)
     {
-   
-        var updatedTodo = await _toDoService.Update(todoDto,id,sessionId);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        var updatedTodo = await _toDoService.Update(todoDto,id,userId);
 
         
         return CreateActionResult(updatedTodo);
 
     }
 
-    [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> UpdateToDoStatusById(string sessionId,string id)
+    [HttpPost("[action]/{id}")]
+    public async Task<IActionResult> UpdateToDoStatusById(string id)
     {
-        var updatedTodo = await _toDoService.UpdateToDoStatusById(sessionId,id);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        var updatedTodo = await _toDoService.UpdateToDoStatusById(userId,id);
 
         
         return CreateActionResult(updatedTodo);
 
     }
     
-    [HttpPost("[action]/{sessionId}")]
+    [HttpPost("[action]")]
 
-    public async Task<IActionResult> Add(TodoDto todoDto,string sessionId)
+    public async Task<IActionResult> Add(TodoDto todoDto)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        var createdTodo = await _toDoService.CreateToDo(todoDto, sessionId);
+        var createdTodo = await _toDoService.CreateToDo(todoDto, userId);
         return CreateActionResult(createdTodo);
 
     }
-    [HttpPost("[action]/{sessionId}/{id}")]
-    public async Task<IActionResult> Remove (string sessionId, string id)
+    [HttpPost("[action]/{id}")]
+    public async Task<IActionResult> Remove (string id)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        var todo = await _toDoService.Remove(sessionId, id);
+        var todo = await _toDoService.Remove(userId, id);
         return CreateActionResult(todo);
     }
 

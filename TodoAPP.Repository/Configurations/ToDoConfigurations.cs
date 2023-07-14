@@ -4,9 +4,9 @@ using TodoAPP.Core.Models;
 
 namespace TodoAPP.Repository.Configurations;
 
-public class ToDoConfigurations:IEntityTypeConfiguration<ToDoEntity>
+public class ToDoConfigurations:IEntityTypeConfiguration<ToDo>
 {
-    public void Configure(EntityTypeBuilder<ToDoEntity> builder)
+    public void Configure(EntityTypeBuilder<ToDo> builder)
     {
         
         builder.Property(x => x.CreatedAt).IsRequired();

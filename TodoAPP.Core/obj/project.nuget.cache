@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eOMsgUlcOXs2+bpa0493Q55nBjlbKF9+ZNtcyZYu5skPIDsHMGCoPQBYiGgCdnJsHX8e+sFSvdCNimXYn1QL8w==",
+  "dgSpecHash": "xKsPTVA3243iYtsOoAFkP78gAcEFBHbB0YG6096m/YPZRnQZYjUpzHXY7sdqQ2Ggnof1xoLulyIxXv/rclibyA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
+  "projectFilePath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

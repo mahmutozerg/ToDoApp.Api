@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\10129257\\.nuget\\packages\\": {}
+    "C:\\Users\\karak\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
+      "projectUniqueName": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
       "projectName": "TodoAPP.Core",
-      "projectPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\TodoAPP.Core.csproj",
-      "packagesPath": "C:\\Users\\10129257\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10129257\\Documents\\GitHub\\ToDoApp.Api\\TodoAPP.Core\\obj\\",
+      "projectPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\TodoAPP.Core.csproj",
+      "packagesPath": "C:\\Users\\karak\\.nuget\\packages\\",
+      "outputPath": "E:\\Projects\\MyProjects\\ToDoApp\\TodoAPP.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\10129257\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\karak\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"

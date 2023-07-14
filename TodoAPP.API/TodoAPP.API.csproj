@@ -10,6 +10,7 @@
         <PackageReference Include="Autofac" Version="7.0.1" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
         <PackageReference Include="EFCore" Version="1.1.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0-preview.4.23259.3">
           <PrivateAssets>all</PrivateAssets>
@@ -19,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\TodoAPP.Auth.Service\TodoAPP.Auth.Service.csproj" />
       <ProjectReference Include="..\TodoAPP.Service\TodoAPP.Service.csproj" />
     </ItemGroup>
 

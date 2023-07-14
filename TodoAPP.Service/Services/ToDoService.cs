@@ -9,65 +9,39 @@ using TodoAPP.Core.UnitOfWorks;
 
 namespace TodoAPP.Service.Services;
 
-public class ToDoService:Service<ToDoEntity>,IToDoService
+public class ToDoService:Service<ToDo>,IToDoService
 {
     //todo: System exception vs db exception farknı araştır
-    private readonly IUserService _userService;
     private readonly IToDoRepository _toDoRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly  ISessionService _sessionService;
-    public ToDoService(IGenericRepository<ToDoEntity> repository, IUnitOfWork unitOfWork, IToDoRepository toDoRepository, ISessionService sessionService, IUserService userService) : base(repository, unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-        _toDoRepository = toDoRepository;
-        _sessionService = sessionService;
-        _userService = userService;
-    }
 
-    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetAllAsync(string sessionId)
+
+    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetAllAsync(string userId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
         
-        if (session == null)
-            throw new Exception(ResponseMessages.SessionNotFound);
-
-        var todos = await _toDoRepository.Where(t=> t!.UserId == session.UserId && !t.IsDeleted).AsNoTracking().ToListAsync();
+        var todos = await _toDoRepository.Where(t=> t!.UserId == userId && !t.IsDeleted).AsNoTracking().ToListAsync();
         
         return CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(todos),200);
     }
-    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetBylistNameAsync(string listName, string sessionId)
+    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetBylistNameAsync(string listName, string userId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session == null)
-        {
-            throw new Exception(ResponseMessages.SessionNotFound);
-        }
         
-        var todos =  await _toDoRepository.GetBylistNameAsync(listName,session.UserId);
+        var todos =  await _toDoRepository.GetByListNameAsync(listName,userId);
         return CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(todos),200);
     }
     
-    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetCompletedToDos(string sessionId)
+    public async Task<CustomResponseListDataDto<ToDoResponseDto>> GetCompletedToDos(string userId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session == null)
-        {
-            throw new Exception(ResponseMessages.SessionNotFound);
-        }
 
-        var completedToDo = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.IsDone &&!t.IsDeleted).ToListAsync();
+        var completedToDo = await _toDoRepository.Where(t => t!.UserId == userId && t.IsDone &&!t.IsDeleted).ToListAsync();
 
         return  CustomResponseListDataDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDtoList(completedToDo),200);
     }
-    public async Task<CustomResponseDto<ToDoResponseDto>> Update(TodoDto todoDto, string id, string sessionId)
+    public async Task<CustomResponseDto<ToDoResponseDto>> Update(TodoDto todoDto, string id, string userId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session == null)
-        {
-            throw new Exception(ResponseMessages.SessionNotFound);
-        }
 
-        var toDo = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.Id == id &&!t.IsDeleted).FirstOrDefaultAsync();
+
+        var toDo = await _toDoRepository.Where(t => t!.UserId == userId && t.Id == id &&!t.IsDeleted).FirstOrDefaultAsync();
 
         if (toDo != null)
         {
@@ -81,16 +55,11 @@ public class ToDoService:Service<ToDoEntity>,IToDoService
         }
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
     }
-    public async Task<CustomResponseDto<ToDoResponseDto>> UpdateToDoStatusById(string sessionId, string id)
+    public async Task<CustomResponseDto<ToDoResponseDto>> UpdateToDoStatusById(string userId, string id)
     {
         // get the todoo by id and update its status
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session == null)
-        {
-            throw new Exception(ResponseMessages.SessionNotFound);
-        }
 
-        var toDo = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.Id == id && !t.IsDeleted)
+        var toDo = await _toDoRepository.Where(t => t!.UserId == userId && t.Id == id && !t.IsDeleted)
             .FirstOrDefaultAsync();
         
         if (toDo == null)
@@ -102,14 +71,9 @@ public class ToDoService:Service<ToDoEntity>,IToDoService
     }
     public async Task<CustomResponseDto<ToDoResponseDto>> CreateToDo(TodoDto todoDto, string sessionId)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session == null)
-        {
-            throw new Exception(ResponseMessages.SessionNotFound);
-        }
-        
+ 
         // creates a new  todoo entity and returns it
-        var toDo  = new ToDoEntity()
+        var toDo  = new ToDo()
         {
             ListName = todoDto.ListName,
             CreatedAt = DateTime.Now,
@@ -119,23 +83,15 @@ public class ToDoService:Service<ToDoEntity>,IToDoService
             IsDone = false,
             IsDeleted = false
         };
-        toDo.UserEntity = session.UserEntity;
-        session.UserEntity.ToDos.Add(toDo);
-
-        await _userService.Update(session.UserEntity);
         await  _unitOfWork.CommitAsync();
         return  CustomResponseDto<ToDoResponseDto>.Success(TodoMapper.ToResponseDto(toDo),200);
     }
     
-    public   async Task<CustomResponseNoDataDto> Remove(string sessionId, string id)
+    public   async Task<CustomResponseNoDataDto> Remove(string userId, string id)
     {
-        var session = await _sessionService.GetSessionWithUserBySessionIdAsync(sessionId);
-        if (session == null)
-        {
-            throw new Exception(ResponseMessages.SessionNotFound);
-        }
+
         
-        var todo = await _toDoRepository.Where(t => t!.UserId == session.UserId && t.Id == id && !t.IsDeleted).FirstOrDefaultAsync();
+        var todo = await _toDoRepository.Where(t => t!.UserId == userId && t.Id == id && !t.IsDeleted).FirstOrDefaultAsync();
         
         if (todo != null)
         {
@@ -147,5 +103,10 @@ public class ToDoService:Service<ToDoEntity>,IToDoService
         throw new Exception(ResponseMessages.SessionInvalidAccesToDo);
     }
 
- 
+
+    public ToDoService(IGenericRepository<ToDo?> repository, IUnitOfWork unitOfWork, IToDoRepository toDoRepository) : base(repository, unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+        _toDoRepository = toDoRepository;
+    }
 }

@@ -6,9 +6,8 @@ namespace TodoAPP.Repository;
 
 public class AppDbContext:DbContext
 {
-    public DbSet<SessionEntity> UserInfoDetaileds { get; set; }
-    public DbSet<UserEntity> UserInfos { get; set; }
-    public Task<List<ToDoEntity>> ToDos { get; set; }
+
+    public Task<List<ToDo>> ToDos { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
     {   
